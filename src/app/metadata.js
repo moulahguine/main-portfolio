@@ -1,6 +1,6 @@
 export const metadata = {
   metadataBase: new URL("https://mohamedoulahguine.com"),
-  title: "Mohamed Oulahguine | Frontend Developer",
+  title: "Mohamed Oulahguine • Frontend Developer",
   description:
     "Frontend developer building modern, scalable web applications with React, Next.js, and TypeScript. Focused on clean architecture, reusable components, and interfaces designed to scale.",
   keywords: [
@@ -48,13 +48,13 @@ export const metadata = {
     type: "website",
     locale: "en_US",
     url: "https://mohamedoulahguine.com",
-    siteName: "Mohamed Oulahguine | Frontend Developer",
-    title: "Mohamed Oulahguine | Frontend Developer",
+    siteName: "Mohamed Oulahguine • Frontend Developer",
+    title: "Mohamed Oulahguine | Frontend Developer | Portfolio Website",
     description:
       "Frontend developer portfolio showcasing modern web applications built with Next.js, Framer Motion, and SCSS.",
     images: [
       {
-        url: "https://ik.imagekit.io/moulahguine/myPortfolio/og/og-image?tr=f-auto,q-92,dpr-2,w-1200,h-630",
+        url: "https://ik.imagekit.io/moulahguine/myPortfolio/og/og-image?tr=w-1200,h-630",
         width: 1200,
         height: 630,
         alt: "this is the og image",
@@ -64,7 +64,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mohamed Oulahguine | Frontend Developer",
+    title: "Mohamed Oulahguine | Frontend Developer | Portfolio Website",
     description:
       "Frontend developer portfolio showcasing modern web applications built with Next.js, Framer Motion, and SCSS.",
     images: ["https://mohamedoulahguine.com/og/og-image.png"],

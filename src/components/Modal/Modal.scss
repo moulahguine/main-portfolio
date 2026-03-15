@@ -53,7 +53,8 @@
     // Modal header section
     .modal__header {
       @include flex-between;
-      padding: clamp($space-8, 2vw, $space-16) clamp($space-4, 2vw, $space-12);
+      padding: clamp($space-16, 2vw, $space-20);
+      padding-bottom: clamp($space-8, 2vw, $space-12);
       flex-shrink: 0;
 
       // Modal header title section

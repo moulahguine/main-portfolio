@@ -1,7 +1,7 @@
 import { Experience } from "@/sections";
 
 export const metadata = {
-  title: "Experience | Mohamed Oulahguine",
+  title: "Experience | Mohamed Oulahguine • Frontend Developer",
   description:
     "Explore the professional experience, education, and freelance projects with 4 years of experience in frontend development.",
   keywords: [
@@ -19,7 +19,7 @@ export const metadata = {
     "english language",
   ],
   openGraph: {
-    title: "Experience | Mohamed Oulahguine",
+    title: "Experience | Mohamed Oulahguine • Frontend Developer",
     description:
       "Explore the professional experience, education, and freelance projects with 4 years of experience in frontend development.",
     type: "website",

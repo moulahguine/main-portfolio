@@ -1,0 +1,67 @@
+@use "../../assets/styles" as *;
+
+// Action pill button container
+.action-pill-btn-container {
+  @include flex-center;
+  width: fit-content;
+  background-color: transparent;
+  border-radius: $radius-md;
+}
+
+// Action pill button
+.action-pill-btn {
+  @include flex-center;
+  justify-content: flex-start;
+  gap: clamp($space-8, 1vw, $space-12);
+  width: inherit;
+  padding: $space-4 $space-12 $space-4 $space-4;
+  background-color: var(--gray-700);
+  transition: background-color 0.25s ease;
+  border-radius: inherit;
+
+  // Icon shell
+  &__icon-shell {
+    @include flex-center;
+    position: relative;
+    width: clamp($space-24, 2vw, $space-32);
+    height: clamp($space-24, 2vw, $space-32);
+    flex-shrink: 0;
+    border-radius: inherit;
+    background-color: var(--gray-100);
+    color: var(--gray-700);
+    isolation: isolate;
+  }
+
+  &__icon {
+    @include flex-center;
+    position: absolute;
+    inset: 0;
+    z-index: $z-above;
+
+    svg {
+      font-size: clamp($font-size-18, 2vw, $font-size-20);
+    }
+  }
+
+  &__ripples {
+    position: absolute;
+    inset: 0;
+    z-index: $z-base;
+    pointer-events: none;
+  }
+
+  &__ripple {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid color-mix(in srgb, var(--gray-900) 95%, transparent);
+  }
+
+  &__label {
+    color: var(--gray-100);
+    font-weight: $fw-bold;
+    font-size: clamp($font-size-14, 1vw, $font-size-16);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+}

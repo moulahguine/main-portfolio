@@ -23,10 +23,11 @@ import { AnimatePresence, motion } from "motion/react";
 // styles
 import "./Menu.scss";
 
+// Menu component
 export default function Menu() {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const [activeQuickAction, setActiveQuickAction] = useState("social");
+  const [activeQuickAction, setActiveQuickAction] = useState(null);
   const [hoveredTheme, setHoveredTheme] = useState(null);
   const { theme, setTheme } = useTheme();
 
@@ -82,6 +83,8 @@ export default function Menu() {
   useEffect(() => {
     if (isOpen) {
       wasOpenRef.current = true;
+      setHoveredTheme(null);
+      setActiveQuickAction(null);
       const firstInteractive = panelRef.current?.querySelector(
         "button, a[href], [tabindex]:not([tabindex='-1'])"
       );
@@ -170,14 +173,17 @@ export default function Menu() {
           >
             {/* Theme */}
             <section className="menu__section">
+              {/* Title */}
               <h2 className="menu__section-title">Theme:</h2>
 
+              {/* Options */}
               <div className="menu__theme-options">
                 {themeOptions.map((option) => {
                   const Icon = option.icon;
                   const isActive = currentTheme === option.id;
 
                   return (
+                    // Theme button
                     <motion.button
                       key={option.id}
                       type="button"
@@ -187,8 +193,6 @@ export default function Menu() {
                       onClick={() => switchTheme(option.id)}
                       onHoverStart={() => setHoveredTheme(option.id)}
                       onHoverEnd={() => setHoveredTheme(null)}
-                      onFocus={() => setHoveredTheme(option.id)}
-                      onBlur={() => setHoveredTheme(null)}
                       whileHover={{ y: -1 }}
                       whileTap={{ scale: 0.98 }}
                       transition={{
@@ -232,9 +236,12 @@ export default function Menu() {
 
             {/* Contact & Share */}
             <section className="menu__section">
+              {/* Title */}
               <h2 className="menu__section-title">Contact & Share:</h2>
 
+              {/* Links */}
               <div className="menu__links">
+                {/* Social Links Link */}
                 <ConnectLinks
                   renderTrigger={({ open }) => (
                     <button
@@ -249,6 +256,7 @@ export default function Menu() {
                   )}
                 />
 
+                {/* Share Portfolio Link */}
                 <SharePortfolio
                   renderTrigger={({ open }) => (
                     <button
@@ -263,6 +271,7 @@ export default function Menu() {
                   )}
                 />
 
+                {/* Contact Link */}
                 <Link
                   href="/contact"
                   className="menu__link-btn menu__link-btn--contact"

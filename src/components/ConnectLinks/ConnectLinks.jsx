@@ -1,46 +1,48 @@
-"use client";
-
-import { useState } from "react";
-import { Modal, DefaultContent } from "@/components";
+// Components
+import { ModalTrigger, DefaultContent } from "@/components";
+// Data
 import socialLinksData from "@/data/socialLinksData";
+// Icons
 import { RxPerson } from "react-icons/rx";
+// Styles
 import "./ConnectLinks.scss";
 
+// Connect Links component
 export default function ConnectLinks({ renderTrigger }) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const open = () => setIsModalOpen(true);
-
   return (
-    <>
-      {renderTrigger ? (
-        renderTrigger({ open })
-      ) : (
-        <button
-          className="social-trigger-btn"
-          onClick={open}
-          aria-label="Open social links"
-          type="button"
-          title="Open social links"
-        >
-          <span className="social__icon" aria-hidden="true">
-            <RxPerson size={18} />
-          </span>
-        </button>
-      )}
-
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        title="Find Me Online"
-        size="small"
-      >
-        <DefaultContent>
-          <div className="social-links-grid">
-            {socialLinksData.map((social) => {
-              const Icon = social.icon;
-              return (
+    // Modal Trigger
+    <ModalTrigger
+      title="Social Links"
+      size="small"
+      renderTrigger={
+        renderTrigger ??
+        (({ open }) => (
+          // Trigger button
+          <button
+            className="social-trigger-btn"
+            onClick={open}
+            aria-label="Open social links"
+            type="button"
+            title="Open social links"
+          >
+            {/* Trigger icon */}
+            <span className="social__icon" aria-hidden="true">
+              <RxPerson size={18} aria-hidden="true" />
+            </span>
+          </button>
+        ))
+      }
+    >
+      {/* Default Content */}
+      <DefaultContent>
+        {/* Social links grid */}
+        <ul className="social-links-grid" aria-label="Social links">
+          {socialLinksData.map((social) => {
+            const Icon = social.icon;
+            // Social link item
+            return (
+              <li key={social.label}>
                 <a
-                  key={social.label}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -50,15 +52,15 @@ export default function ConnectLinks({ renderTrigger }) {
                   style={{ "--hover-color": social.color }}
                 >
                   <span className="social-link-icon">
-                    <Icon size={22} />
+                    <Icon size={22} aria-hidden="true" />
                   </span>
                   <span className="social-link-label">{social.label}</span>
                 </a>
-              );
-            })}
-          </div>
-        </DefaultContent>
-      </Modal>
-    </>
+              </li>
+            );
+          })}
+        </ul>
+      </DefaultContent>
+    </ModalTrigger>
   );
 }

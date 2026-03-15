@@ -44,7 +44,7 @@ const personJsonLd = {
       "https://www.upwork.com/freelancers/moulahguine",
       "https://medium.com/@moulahguine",
       "https://www.instagram.com/moulahguine",
-      "https://leetcode.com/moulahguine",
+      "https://leetcode.com/u/moulahguine/",
       "https://codepen.io/moulahguine",
       "https://t.me/moulahguine",
       "https://www.youtube.com/@moulahguine",

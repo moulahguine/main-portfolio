@@ -1,5 +1,7 @@
 // Hero Section
 export { default as Hero } from "./Hero/Hero";
+export { default as HeroMedia } from "./Hero/ui/HeroMedia";
+export { default as InlineMap } from "./Hero/ui/InlineMap";
 
 // About Section
 export { default as About } from "./About/About";

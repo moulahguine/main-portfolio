@@ -1,21 +1,31 @@
 "use client";
 
+// hooks
 import { useState, useCallback, useRef } from "react";
-import { useTheme } from "next-themes";
-import { Modal, DefaultContent } from "@/components";
+
+// Components
+import { ModalTrigger, DefaultContent, ActionPillButton } from "@/components";
+
+// Icons
 import { QRCodeSVG } from "qrcode.react";
 import { PiShareFatLight } from "react-icons/pi";
 import { toPng } from "html-to-image";
+
+// Styles
 import "./SharePortfolio.scss";
 
+// Data
 const CANONICAL_URL = "https://mohamedoulahguine.com";
 
+// Share portfolio component
 export default function SharePortfolio({ renderTrigger }) {
-  const { resolvedTheme } = useTheme();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // State
   const [downloaded, setDownloaded] = useState(false);
+
+  // Ref
   const cardRef = useRef(null);
 
+  // Handle download
   const handleDownload = useCallback(async () => {
     if (!cardRef.current) return;
     try {
@@ -40,64 +50,64 @@ export default function SharePortfolio({ renderTrigger }) {
     }
   }, []);
 
-  const qrImageSrc =
-    resolvedTheme === "light"
-      ? "/favicon/android-chrome-dark-512x512.png"
-      : "/favicon/android-chrome-dark-512x512.png";
-
-  const open = () => setIsModalOpen(true);
+  // QR image source
+  const qrImageSrc = "/favicon/android-chrome-512x512.png";
 
   return (
-    <>
-      {renderTrigger ? (
-        renderTrigger({ open })
-      ) : (
-        <button
-          className="share-portfolio-trigger-btn"
-          onClick={open}
-          aria-label="Share portfolio"
-          type="button"
-          title="Share portfolio"
-        >
-          <span className="share-portfolio__icon" aria-hidden="true">
-            <PiShareFatLight size={18} />
-          </span>
-        </button>
-      )}
-
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        title="Share portfolio"
-        size="small"
-        showHeader={false}
-      >
-        <DefaultContent className="share-portfolio-modal">
-          <div ref={cardRef} className="qr">
-            <QRCodeSVG
-              value={CANONICAL_URL}
-              size={250}
-              level="H"
-              marginSize={0}
-              imageSettings={{
-                src: qrImageSrc,
-                height: 50,
-                width: 50,
-                excavate: true,
-              }}
-              aria-label="QR code to portfolio"
-            />
-          </div>
+    // Modal trigger
+    <ModalTrigger
+      title="Scan QR on your phone."
+      size="small"
+      showHeader={true}
+      renderTrigger={
+        renderTrigger ??
+        (({ open }) => (
           <button
+            className="share-portfolio-trigger-btn"
+            onClick={open}
+            aria-label="Share portfolio"
             type="button"
-            className="download-btn"
-            onClick={handleDownload}
-            aria-label={downloaded ? "Downloaded" : "Download card"}
+            title="Share portfolio"
           >
-            {downloaded ? "Downloaded!" : "Download"}
+            {/* Icon */}
+            <span className="share-portfolio__icon" aria-hidden="true">
+              <PiShareFatLight size={18} aria-hidden="true" />
+            </span>
           </button>
-        </DefaultContent>
-      </Modal>
-    </>
+        ))
+      }
+    >
+      {/* Default content */}
+      <DefaultContent className="share-portfolio-modal">
+        {/* QR code */}
+        <div ref={cardRef} className="qr">
+          <QRCodeSVG
+            value={CANONICAL_URL}
+            size={250}
+            level="H"
+            marginSize={0}
+            imageSettings={{
+              src: qrImageSrc,
+              height: 50,
+              width: 50,
+              excavate: true,
+            }}
+            aria-label="QR code to portfolio"
+          />
+        </div>
+        {/* Download button */}
+        <ActionPillButton
+          onClick={handleDownload}
+          ariaLabel={downloaded ? "Downloaded" : "Download card"}
+          title="Download portfolio share card"
+          label="Download Card"
+          doneLabel="Done!"
+          variant="share"
+          className="download-btn"
+          enableHover={true}
+          enableClickFeedback={true}
+        />
+      </DefaultContent>
+    </ModalTrigger>
   );
 }

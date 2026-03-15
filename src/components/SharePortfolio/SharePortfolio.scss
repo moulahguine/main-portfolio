@@ -4,42 +4,19 @@
   @include flex-column;
   align-items: center;
   gap: $space-20;
-  padding: calc($space-40 + $space-24) $space-24 $space-24 $space-24;
+  padding: clamp($space-16, 2vw, $space-24);
   border-radius: $radius-lg;
   overflow: hidden;
-
-  @media (max-width: $breakpoint-md) {
-    padding-top: $space-40 + $space-16;
-    gap: $space-8;
-  }
 
   .qr {
     @include flex-center;
     padding: clamp($space-8, 1.5vw, $space-16);
     background-color: var(--white);
     border-radius: $radius-md;
-    box-shadow: 0 0 1px var(--gray-300);
+    box-shadow: 0 0 5px 1px var(--gray-300);
 
     svg {
       display: block;
-    }
-  }
-
-  .download-btn {
-    width: 100%;
-    max-width: clamp(160px, 40vw, 200px);
-    padding: $space-12 $space-16;
-    border-radius: $radius-xl;
-    background-color: var(--gray-800);
-    color: var(--gray-100);
-    font-size: clamp($font-size-12, 1.5vw, $font-size-14);
-    font-weight: $fw-semibold;
-    box-shadow: 0 0 1px var(--gray-700);
-    transition: all 0.2s ease;
-
-    &:hover {
-      background-color: var(--gray-200);
-      color: var(--gray-800);
     }
   }
 }

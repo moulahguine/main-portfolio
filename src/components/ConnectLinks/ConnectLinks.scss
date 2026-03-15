@@ -2,48 +2,62 @@
 
 .social-links-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: $space-12;
-  padding: $space-8;
-
-  @media (max-width: $breakpoint-md) {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: clamp($space-12, 1vw, $space-16);
+  padding: clamp($space-12, 1vw, $space-16);
 
   .social-link-item {
     @include flex-column;
     align-items: center;
-    gap: $space-8;
-    padding: $space-16;
+    gap: clamp($space-4, 1vw, $space-8);
+    padding: clamp($space-12, 1vw, $space-16);
     border-radius: $radius-md;
-    background-color: var(--white);
-    border: 1px solid var(--gray-400);
+    background-color: var(--gray-200);
+    border: 1px solid var(--gray-300);
     cursor: pointer;
     transition: all 0.2s ease;
 
-    &:hover {
-      color: var(--hover-color, var(--gray-100));
-      border-color: var(--hover-color, var(--gray-300));
-      transform: translateY(-2px);
+    @media (hover: hover) {
+      &:hover {
+        color: var(--hover-color, var(--gray-100));
+        border-color: var(--hover-color, var(--gray-300));
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px
+          color-mix(
+            in srgb,
+            var(--hover-color, var(--gray-700)) 10%,
+            transparent
+          );
 
-      .social-link-icon {
-        color: var(--hover-color);
-      }
+        .social-link-icon {
+          color: var(--hover-color);
+        }
 
-      .social-link-label {
-        color: var(--gray-500);
+        .social-link-label {
+          color: var(--gray-500);
+        }
       }
     }
 
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &:focus-visible {
+      border-color: var(--hover-color, var(--gray-300));
+      box-shadow: 0 0 0 3px
+        color-mix(in srgb, var(--hover-color, var(--gray-300)) 70%, transparent);
+    }
+
     .social-link-icon {
-      color: var(--gray-600);
+      color: var(--gray-700);
       transition: color 0.2s ease;
     }
 
     .social-link-label {
       font-size: clamp($font-size-10, 1.4vw, $font-size-12);
       font-weight: $fw-medium;
-      color: var(--gray-600);
+      color: var(--gray-700);
       transition: color 0.2s ease;
     }
   }

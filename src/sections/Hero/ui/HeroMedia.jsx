@@ -1,10 +1,7 @@
 "use client";
-
-// React
-import { useState } from "react";
 import Image from "next/image";
 // Components
-import { Modal, ImageViewer } from "@/components";
+import { ModalTrigger, ImageViewer } from "@/components";
 // Icons
 import { BsArrowsFullscreen } from "react-icons/bs";
 
@@ -16,55 +13,60 @@ export default function HeroMedia({ classFigure, classImage }) {
   const largeProfilePicture =
     "https://ik.imagekit.io/moulahguine/myPortfolio/profilePicture/lagreprofilepicture?tr=w-800,h-800";
 
-  // state to open and close the modal
-  const [isImageOpen, setIsImageOpen] = useState(false);
+  const profileAlt =
+    "Portrait of Mohamed Oulahguine, frontend developer specialized in React and Next.js";
 
   return (
     <>
-      <figure
-        className={classFigure}
-        onClick={() => setIsImageOpen(true)}
-        onKeyDown={(e) => e.key === "Enter" && setIsImageOpen(true)}
-        tabIndex={0}
-        role="button"
-        aria-label="Open full-size portrait of Mohamed Oulahguine"
-        title="Open full-size portrait"
-      >
-        <Image
-          key={profilePicture}
-          className={classImage}
-          src={profilePicture}
-          alt="Portrait of Mohamed Oulahguine, frontend developer specialized in React and Next.js"
-          loading="eager"
-          decoding="async"
-          fill
-          sizes="(max-width: 778px) 300px, 160px"
-          quality={100}
-          priority={true}
-        />
-        <span className="hero__media-overlay">
-          <BsArrowsFullscreen size={18} />
-        </span>
-        <figcaption className="sr-only">
-          Portrait of Mohamed Oulahguine, frontend developer specialized in
-          React and Next.js
-        </figcaption>
-      </figure>
-
-      <Modal
-        isOpen={isImageOpen}
-        onClose={() => setIsImageOpen(false)}
+      {/* Modal Trigger */}
+      <ModalTrigger
         size="large"
         closeOnOverlayClick={true}
         allowPinchZoom
         showHeader={true}
         title="Profile picture"
+        renderTrigger={({ open }) => (
+          <figure
+            className={classFigure}
+            onClick={open}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                open();
+              }
+            }}
+            tabIndex={0}
+            role="button"
+            aria-label="Open full-size portrait of Mohamed Oulahguine"
+            title="Open full-size portrait"
+          >
+            {/* Profile picture */}
+            <Image
+              key={profilePicture}
+              className={classImage}
+              src={profilePicture}
+              alt={profileAlt}
+              loading="eager"
+              decoding="async"
+              fill
+              sizes="(max-width: 778px) 300px, 160px"
+              quality={100}
+              priority={true}
+            />
+            {/* Fullscreen icon */}
+            <span className="hero__media-overlay">
+              <BsArrowsFullscreen size={18} />
+            </span>
+            <figcaption className="sr-only">{profileAlt}</figcaption>
+          </figure>
+        )}
       >
+        {/* Image Viewer */}
         <ImageViewer
           src={largeProfilePicture}
-          alt={`Portrait of Mohamed Oulahguine, frontend developer specialized in React and Next.js in full size`}
+          alt={`${profileAlt} in full size`}
         />
-      </Modal>
+      </ModalTrigger>
     </>
   );
 }

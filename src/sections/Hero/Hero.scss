@@ -191,8 +191,8 @@
 
             // Verified badge section
             .verified-badge {
-              width: clamp($space-18, 1.2vw, $space-20);
-              height: clamp($space-18, 1.2vw, $space-20);
+              width: $space-20;
+              height: $space-20;
             }
           }
 
@@ -229,70 +229,9 @@
       // Hero Resume Button
       .resume-btn-container {
         @include flex-center;
-        width: 110px;
-        background-color: transparent;
-        border-radius: $radius-2xl;
-        border: 1px solid var(--gray-700);
 
         @media (max-width: $breakpoint-md) {
           margin-left: $space-16;
-        }
-
-        .resume-btn {
-          @include flex-center;
-          justify-content: flex-start;
-          gap: $space-8;
-          width: inherit;
-          padding: $space-4 $space-12 $space-4 $space-4;
-          background-color: var(--gray-700);
-          transition: background-color 0.25s ease;
-          border-radius: inherit;
-
-          &__icon-shell {
-            @include flex-center;
-            position: relative;
-            width: $space-32;
-            height: $space-32;
-            flex-shrink: 0;
-            border-radius: 50%;
-            background-color: var(--gray-100);
-            color: var(--gray-700);
-            isolation: isolate;
-          }
-
-          &__icon {
-            @include flex-center;
-            position: absolute;
-            inset: 0;
-            z-index: $z-above;
-
-            svg {
-              font-size: $font-size-20;
-            }
-          }
-
-          &__ripples {
-            position: absolute;
-            inset: 0;
-            z-index: $z-base;
-            pointer-events: none;
-          }
-
-          &__ripple {
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
-            border: 1.5px solid
-              color-mix(in srgb, var(--gray-900) 95%, transparent);
-          }
-
-          &__label {
-            color: var(--gray-100);
-            font-weight: $fw-bold;
-            font-size: $font-size-14;
-            text-transform: uppercase;
-            white-space: nowrap;
-          }
         }
       }
     }
@@ -300,9 +239,8 @@
     // Media query for mobile devices
     @media (max-width: $breakpoint-md) {
       height: 100%;
+      padding: 0;
       padding-bottom: $space-40;
-      padding-left: 0;
-      padding-right: 0;
       border-radius: 0;
     }
   }

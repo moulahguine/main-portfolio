@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Projects | Mohamed Oulahguine",
+  title: "Projects | Mohamed Oulahguine • Frontend Developer",
   description:
     "Explore my projects: personal portfolio, ecommerce store, clinic management system, and modern web design.",
   keywords: [
@@ -13,7 +13,7 @@ export const metadata = {
     "modern web design projects",
   ],
   openGraph: {
-    title: "Projects | Mohamed Oulahguine",
+    title: "Projects | Mohamed Oulahguine • Frontend Developer",
     description:
       "Explore my projects: personal portfolio, ecommerce store, clinic management system, and modern web design.",
     type: "website",

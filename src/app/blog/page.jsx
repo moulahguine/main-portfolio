@@ -1,7 +1,7 @@
 import Blogs from "@/sections/Blog/Blogs";
 
 export const metadata = {
-  title: "Blog | Mohamed Oulahguine",
+  title: "Blog | Mohamed Oulahguine • Frontend Developer",
   description:
     "here you can find my blog posts about frontend development, React, Next.js, and practical coding insights.",
   keywords: [
@@ -24,7 +24,7 @@ export const metadata = {
     "blog comments",
   ],
   openGraph: {
-    title: "Blog | Mohamed Oulahguine",
+    title: "Blog | Mohamed Oulahguine • Frontend Developer",
     description:
       "here you can find my blog posts about frontend development, React, Next.js, and practical coding insights.",
     type: "website",

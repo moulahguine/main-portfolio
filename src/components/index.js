@@ -1,11 +1,12 @@
 // Header Component
 export { default as Header } from "./Header/Header";
 
-// Location Component
-export { default as Location } from "./Location/Location";
+// location component
+export { default as InteractiveMap } from "./Location/InteractiveMap";
 
 // Modal Component
 export { default as Modal } from "./Modal/Modal";
+export { default as ModalTrigger } from "./ModalTrigger/ModalTrigger";
 
 // ExperienceCard Component
 export { default as ExperienceCard } from "./ExperienceCard/ExperienceCard";
@@ -28,8 +29,12 @@ export { default as ConnectLinks } from "./ConnectLinks/ConnectLinks";
 
 // SharePortfolio Component
 export { default as SharePortfolio } from "./SharePortfolio/SharePortfolio";
+export { default as ActionPillButton } from "./ActionPillButton/ActionPillButton";
 
 // ModalContent Components
 export { default as ImageViewer } from "./ModalContent/ImageViewer/ImageViewer";
 export { default as VideoViewer } from "./ModalContent/VideoViewer/VideoViewer";
 export { default as DefaultContent } from "./ModalContent/DefaultContent/DefaultContent";
+
+// Icons
+export { default as VerifiedBadge } from "./Icons/VerifiedBadge";
