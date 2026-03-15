@@ -1,9 +1,6 @@
 // Header Component
 export { default as Header } from "./Header/Header";
 
-// location component
-export { default as InteractiveMap } from "./Location/InteractiveMap";
-
 // Modal Component
 export { default as Modal } from "./Modal/Modal";
 export { default as ModalTrigger } from "./ModalTrigger/ModalTrigger";
