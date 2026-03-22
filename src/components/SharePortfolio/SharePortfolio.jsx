@@ -4,7 +4,7 @@
 import { useState, useCallback, useRef } from "react";
 
 // Components
-import { ModalTrigger, DefaultContent, ActionPillButton } from "@/components";
+import { ModalTrigger, ActionPillButton } from "@/components";
 
 // Icons
 import { QRCodeSVG } from "qrcode.react";
@@ -56,7 +56,7 @@ export default function SharePortfolio({ renderTrigger }) {
   return (
     // Modal trigger
     <ModalTrigger
-      title="Scan QR on your phone."
+      title="Scan QR Code."
       size="small"
       showHeader={true}
       renderTrigger={
@@ -77,8 +77,8 @@ export default function SharePortfolio({ renderTrigger }) {
         ))
       }
     >
-      {/* Default content */}
-      <DefaultContent className="share-portfolio-modal">
+      {/* Modal content */}
+      <div className="share-portfolio-modal">
         {/* QR code */}
         <div ref={cardRef} className="qr">
           <QRCodeSVG
@@ -99,7 +99,7 @@ export default function SharePortfolio({ renderTrigger }) {
         <ActionPillButton
           onClick={handleDownload}
           ariaLabel={downloaded ? "Downloaded" : "Download card"}
-          title="Download portfolio share card"
+          title="Download Card "
           label="Download Card"
           doneLabel="Done!"
           variant="share"
@@ -107,7 +107,7 @@ export default function SharePortfolio({ renderTrigger }) {
           enableHover={true}
           enableClickFeedback={true}
         />
-      </DefaultContent>
+      </div>
     </ModalTrigger>
   );
 }

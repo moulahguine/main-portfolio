@@ -1,8 +1,8 @@
-import Image from "next/image";
 import SkillIcon from "@/data/skillsData";
 import ProjectLinks from "./ProjectLinks";
 import { GoArrowUpRight } from "react-icons/go";
 import "./ProjectCard.scss";
+import ImageWithFallback from "@/components/ImageWithFallback/ImageWithFallback";
 
 export default function ProjectCard({ project }) {
   const maxTechsToShow = 3;
@@ -12,9 +12,10 @@ export default function ProjectCard({ project }) {
   return (
     <>
       <figure className="project-card__media">
-        <Image
+        <ImageWithFallback
           className="project-card__mediaImg"
           src={project.media.image}
+          fallback={project.media.fallback}
           alt={`${project.title} project interface screenshot built by Mohamed Oulahguine`}
           width={1200}
           height={800}

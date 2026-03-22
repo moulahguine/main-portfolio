@@ -25,6 +25,17 @@ import { PiCoffeeThin } from "react-icons/pi";
 // Flags
 import { MA, GB, TR } from "country-flag-icons/react/3x2";
 
+// Local fallback images
+import { IMAGE_ASSETS } from "@/assets/images";
+
+const atlasUniversityLogoFallback = IMAGE_ASSETS.experience.edu.atlasUniversity;
+const lyceeAhmedChaoukiLogoFallback = IMAGE_ASSETS.experience.edu.ahmedChawki;
+const nisantasiUniversityLogoFallback = IMAGE_ASSETS.experience.edu.nisantasiLogo;
+const upworkLogoFallback = IMAGE_ASSETS.experience.freelance.upwork;
+const selfEmployedLogoFallback = IMAGE_ASSETS.experience.freelance.freelancer;
+const freecodecampLogoFallback = IMAGE_ASSETS.experience.cert.freecodecamp;
+const simplilearnLogoFallback = IMAGE_ASSETS.experience.cert.simplilearn;
+
 // Experience data
 export const experienceData = {
   // Education
@@ -38,6 +49,7 @@ export const experienceData = {
       startDate: "2023",
       endDate: "2027",
       logo: atlasUniversityLogo,
+      logoFallback: atlasUniversityLogoFallback,
       description: [
         "Studying Computer Software Engineering with a balance between engineering fundamentals and practical software development",
         "Learning core computer science concepts including programming, data structures, algorithms, and system thinking",
@@ -67,6 +79,7 @@ export const experienceData = {
       startDate: "2022",
       endDate: "2023",
       logo: nisantasiUniversityLogo,
+      logoFallback: nisantasiUniversityLogoFallback,
       description: [
         "Completed an intensive academic English preparation program",
         "Strengthened technical and academic communication skills for engineering studies",
@@ -85,6 +98,7 @@ export const experienceData = {
       startDate: "Sep 2017",
       endDate: "Jul 2020",
       logo: lyceeAhmedChaoukiLogo,
+      logoFallback: lyceeAhmedChaoukiLogoFallback,
       description: [
         "Completed a Baccalaureate in Physics Sciences with a strong focus on physics, mathematics, and analytical problem-solving",
         "Participated in physics and science projects involving laboratory experiments and applied sciences",
@@ -111,6 +125,7 @@ export const experienceData = {
       startDate: "Sep 2025",
       endDate: "Present",
       logo: upworkLogo,
+      logoFallback: upworkLogoFallback,
       description: [
         "Worked on multiple web projects using React, Next.js, TypeScript, and Tailwind CSS",
         "Built clean, responsive user interfaces with reusable and maintainable components",
@@ -143,6 +158,7 @@ export const experienceData = {
       startDate: "Mar 2022",
       endDate: "Present",
       logo: selfEmployedLogo,
+      logoFallback: selfEmployedLogoFallback,
       description: [
         "Designed and developed personal and client-based frontend projects",
         "Built websites using React, JavaScript, Vite, and Tailwind CSS",
@@ -179,6 +195,7 @@ export const experienceData = {
       endDate: "Dec 2025",
       credentialId: "9069639",
       logo: simplilearnLogo,
+      logoFallback: simplilearnLogoFallback,
       description: [
         "Completed an introductory frontend development course covering core web concepts",
         "Gained foundational knowledge in HTML, CSS, JavaScript, and React.js",
@@ -204,6 +221,7 @@ export const experienceData = {
       endDate: "Dec 2025",
       credentialId: "moulahguine",
       logo: freecodecampLogo,
+      logoFallback: freecodecampLogoFallback,
       description: [
         "Completed the Responsive Web Design certification program on freeCodeCamp",
         "Built multiple projects focusing on responsive layouts and modern CSS techniques",

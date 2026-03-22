@@ -6,14 +6,6 @@
   position: relative;
   padding: $space-4;
 
-  // icon
-  &__icon {
-    display: none;
-    @media (max-width: $breakpoint-md) {
-      display: block;
-    }
-  }
-
   // list
   &__list {
     @include flex-between;
@@ -23,17 +15,30 @@
     // item
     .nav__item {
       display: flex;
+      // align-items: center;
 
       // link
       .nav__link {
         color: var(--gray-500);
         font-size: clamp($font-size-12, 2vw, $font-size-16);
-        padding: clamp($space-4, 1vw, $space-8);
+        padding: clamp($space-4, 1vw, $space-8) clamp($space-8, 1vw, $space-12);
         @include flex-center;
+        // align-items: start;
 
         @media (max-width: $breakpoint-md) {
           @include flex-column;
+          align-items: center;
           width: 80px;
+        }
+
+        .nav__icon {
+          @include flex-center;
+
+          svg {
+            font-size: $font-size-14;
+            fill: none;
+            stroke: var(--gray-900);
+          }
         }
 
         // inner
@@ -48,18 +53,25 @@
             will-change: transform;
             color: inherit;
             transform: translateY(0);
-            transition:
-              transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
-              color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+            transition: all 0.3s ease-in-out;
+            .nav__link__text:last-child {
+              color: var(--gray-900);
+            }
           }
         }
 
         // hover slide
-        &:hover .nav__link__slide {
-          transform: translateY(-52%);
+        &:not(.active):hover {
+          .nav__icon {
+            svg {
+              stroke: none;
+              fill: var(--gray-900);
+              font-size: $font-size-16;
+            }
+          }
 
-          @media (min-width: $breakpoint-md) {
-            color: var(--gray-900);
+          .nav__link__slide {
+            transform: translateY(-52%);
           }
         }
 
@@ -77,9 +89,23 @@
         &.active {
           color: var(--gray-900);
           font-weight: $fw-bold;
-          @media (max-width: $breakpoint-md) {
-            background-color: var(--gray-100);
-            border-radius: $radius-xl;
+          background-color: color-mix(
+            in srgb,
+            var(--gray-300) 40%,
+            transparent
+          );
+          border-radius: $radius-xl;
+
+          .nav__icon {
+            svg {
+              font-size: $font-size-16;
+              stroke: none;
+              fill: var(--gray-900);
+            }
+          }
+
+          .nav__link__slide {
+            transform: translateY(-52%);
           }
         }
       }

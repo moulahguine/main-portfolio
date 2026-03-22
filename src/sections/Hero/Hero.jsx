@@ -50,7 +50,12 @@ export default function Hero() {
               </p>
               {/* Hero location */}
               <address className="hero__location">
-                <PiMapPinLight aria-hidden="true" /> Istanbul / Türkiye
+                <PiMapPinLight aria-hidden="true" />
+                Istanbul, Turkey |{" "}
+                <span className="nationality" title="Moroccan">
+                  {" "}
+                  from Moroccan
+                </span>
               </address>
             </div>
           </div>
@@ -58,6 +63,7 @@ export default function Hero() {
           {/* Resume button */}
           <div className="resume-btn-container">
             {/* Action pill button */}
+
             <ActionPillButton
               href={RESUME_URL}
               download

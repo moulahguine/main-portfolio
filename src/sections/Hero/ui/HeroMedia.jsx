@@ -1,26 +1,24 @@
 "use client";
-import Image from "next/image";
+
 // Components
-import { ModalTrigger, ImageViewer } from "@/components";
+import {
+  ModalTrigger,
+  ImageViewer,
+  ImageWithFallback,
+  IMAGEKIT_MEDIA,
+  LOCAL_MEDIA,
+} from "@/components";
+
 // Icons
 import { BsArrowsFullscreen } from "react-icons/bs";
 
 // Data URLs
 export default function HeroMedia({ classFigure, classImage }) {
-  // ImageKit URLs
-  const profilePicture =
-    "https://ik.imagekit.io/moulahguine/myPortfolio/profilePicture/profilePicture?tr=w-400,h-400";
-  const largeProfilePicture =
-    "https://ik.imagekit.io/moulahguine/myPortfolio/profilePicture/lagreprofilepicture?tr=w-800,h-800";
-
-  const profileAlt =
-    "Portrait of Mohamed Oulahguine, frontend developer specialized in React and Next.js";
-
   return (
     <>
       {/* Modal Trigger */}
       <ModalTrigger
-        size="large"
+        size="medium"
         closeOnOverlayClick={true}
         allowPinchZoom
         showHeader={true}
@@ -37,34 +35,40 @@ export default function HeroMedia({ classFigure, classImage }) {
             }}
             tabIndex={0}
             role="button"
-            aria-label="Open full-size portrait of Mohamed Oulahguine"
+            aria-label="Open full-size portrait"
             title="Open full-size portrait"
           >
             {/* Profile picture */}
-            <Image
-              key={profilePicture}
+            <ImageWithFallback
+              key={IMAGEKIT_MEDIA.hero.profilePicture}
               className={classImage}
-              src={profilePicture}
-              alt={profileAlt}
+              src={IMAGEKIT_MEDIA.hero.profilePicture}
+              fallback={LOCAL_MEDIA.hero.profilePicture}
+              alt={`profile picture`}
               loading="eager"
               decoding="async"
               fill
-              sizes="(max-width: 778px) 300px, 160px"
+              sizes="(max-width: 778px) 200px, 160px"
               quality={100}
               priority={true}
             />
+
             {/* Fullscreen icon */}
             <span className="hero__media-overlay">
-              <BsArrowsFullscreen size={18} />
+              <BsArrowsFullscreen aria-hidden="true" />
             </span>
-            <figcaption className="sr-only">{profileAlt}</figcaption>
+            <figcaption className="sr-only">profile picture</figcaption>
           </figure>
         )}
       >
         {/* Image Viewer */}
         <ImageViewer
-          src={largeProfilePicture}
-          alt={`${profileAlt} in full size`}
+          src={IMAGEKIT_MEDIA.hero.largeProfilePicture}
+          fallback={LOCAL_MEDIA.hero.largeProfilePicture}
+          alt={`profile picture in full size portrait`}
+          fill={true}
+          sizes="(max-width: 778px) calc(100vw - 12px), 70vmin"
+          quality={100}
         />
       </ModalTrigger>
     </>

@@ -1,5 +1,5 @@
 // Components
-import { ModalTrigger, DefaultContent } from "@/components";
+import { ModalTrigger } from "@/components";
 // Data
 import socialLinksData from "@/data/socialLinksData";
 // Icons
@@ -33,8 +33,8 @@ export default function ConnectLinks({ renderTrigger }) {
         ))
       }
     >
-      {/* Default Content */}
-      <DefaultContent>
+      {/* Modal content */}
+      <div>
         {/* Social links grid */}
         <ul className="social-links-grid" aria-label="Social links">
           {socialLinksData.map((social) => {
@@ -60,7 +60,7 @@ export default function ConnectLinks({ renderTrigger }) {
             );
           })}
         </ul>
-      </DefaultContent>
+      </div>
     </ModalTrigger>
   );
 }

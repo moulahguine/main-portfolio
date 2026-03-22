@@ -13,6 +13,19 @@ import "./Modal.scss";
 
 // Constants
 const MODAL_SIZES = new Set(["small", "medium", "large", "xlarge"]);
+const MODAL_EASE = "easeInOut";
+const MODAL_DURATION = 0.24;
+const OVERLAY_MOTION = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+};
+const CONTAINER_MOTION = {
+  initial: { opacity: 0, y: 0, scale: 0.96 },
+  animate: { opacity: 1, y: -5, scale: 1 },
+  exit: { opacity: 0, y: 0, scale: 0.96 },
+};
+const MODAL_TRANSITION = { duration: MODAL_DURATION, ease: MODAL_EASE };
 
 // Component
 export default function Modal({
@@ -58,10 +71,15 @@ export default function Modal({
 
   // Normalize the size of the modal
   const normalizedSize = MODAL_SIZES.has(size) ? size : "large";
+  const hasHeader = showHeader && (title || showCloseButton);
+  const contentVariantClass = hasHeader ? "with-header" : "without-header";
+  const closeButton = (
+    <CloseButton onClick={onClose} ariaLabel="Close modal" ariaHidden={true} />
+  );
 
   const modalContent = (
     // AnimatePresence is used to animate the modal when it is opened and closed
-    <AnimatePresence>
+    <AnimatePresence mode="wait" initial={false}>
       {isOpen && (
         // RemoveScroll is used to prevent the scrollbar from appearing when the modal is open
         <RemoveScroll
@@ -73,10 +91,8 @@ export default function Modal({
           <motion.div
             className="modal__overlay"
             onClick={handleOverlayClick}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            {...OVERLAY_MOTION}
+            transition={MODAL_TRANSITION}
           >
             {/* Container */}
             <motion.div
@@ -84,35 +100,23 @@ export default function Modal({
               className={`modal__container ${normalizedSize}`}
               onClick={(e) => e.stopPropagation()}
               style={{ ...style }}
-              initial={{ scale: 0.94, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.94, opacity: 0 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              {...CONTAINER_MOTION}
+              transition={MODAL_TRANSITION}
             >
               {/* Header */}
-              {showHeader && (title || showCloseButton) && (
+              {hasHeader && (
                 <header className="modal__header">
                   {title && <h2 className="modal__header-title">{title}</h2>}
                   {showCloseButton && (
-                    <span className="modal__header-close">
-                      <CloseButton onClick={onClose} ariaLabel="Close modal" />
-                    </span>
+                    <span className="modal__header-close">{closeButton}</span>
                   )}
                 </header>
               )}
 
               {/* Content */}
-              <div
-                className={`modal__content ${
-                  showHeader && (title || showCloseButton)
-                    ? "with-header"
-                    : "without-header"
-                }`}
-              >
+              <div className={`modal__content ${contentVariantClass}`}>
                 {!showHeader && showCloseButton && (
-                  <span className="modal__content-close">
-                    <CloseButton onClick={onClose} ariaLabel="Close modal" />
-                  </span>
+                  <span className="modal__content-close">{closeButton}</span>
                 )}
                 {children}
               </div>

@@ -2,18 +2,17 @@
 
 .close-button {
   @include flex-center;
-  width: clamp($space-24, 2vw, $space-40);
-  aspect-ratio: 1/1;
-  background: color-mix(in srgb, $white 10%, transparent);
-  backdrop-filter: blur(50px);
+  padding: $space-8;
+  background: color-mix(in srgb, var(--gray-400) 30%, transparent);
+  backdrop-filter: blur(8px);
   border-radius: 50%;
   color: var(--gray-900);
   transition: all 0.2s ease;
   z-index: $z-elevated;
 
   &:hover {
-    background: color-mix(in srgb, $gray-50 30%, transparent);
-    transform: scale(1.1);
+    background: color-mix(in srgb, var(--gray-500) 30%, transparent);
+    transform: scale(1.05);
   }
 
   &:active {
@@ -22,6 +21,6 @@
 
   // Icon styling
   svg {
-    font-size: clamp($font-size-16, 2vw, $font-size-20);
+    font-size: clamp($font-size-16, 1.5vw, $font-size-24);
   }
 }

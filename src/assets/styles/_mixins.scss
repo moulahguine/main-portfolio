@@ -34,15 +34,16 @@
 
 // Container mixin
 @mixin container {
-  max-width: $container-width;
+  width: $container-width;
   margin: 0 auto;
   padding: $space-32 0;
   position: relative;
+  border-radius: $radius-lg;
 
   @media (max-width: $breakpoint-md) {
     width: 100%;
     max-width: 100%;
-    padding: $space-16 $space-12;
+    padding: $space-8;
   }
 }
 

@@ -31,8 +31,13 @@ export default function ModalTrigger({
 
   return (
     <>
-      {renderTrigger?.({ open, close, toggle, isOpen })}
-      <Modal {...modalProps} isOpen={isOpen} onClose={close}>
+      {renderTrigger?.({
+        open,
+        close,
+        toggle,
+        isOpen,
+      })}
+      <Modal isOpen={isOpen} onClose={close} {...modalProps}>
         {typeof children === "function"
           ? children({ open, close, toggle, isOpen })
           : children}

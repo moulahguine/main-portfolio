@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { FiExternalLink } from "react-icons/fi";
 import "./ExperienceCard.scss";
 import Link from "next/link";
+import ImageWithFallback from "@/components/ImageWithFallback/ImageWithFallback";
 
 const PREVIEW_MAX_TECHS = 4;
 
@@ -17,6 +17,7 @@ function ExperienceCard({ experience, section, isPreview, isLast }) {
     technologies,
     link,
     logo,
+    logoFallback,
   } = experience;
 
   const dateRange = `${startDate} - ${endDate}`;
@@ -38,8 +39,9 @@ function ExperienceCard({ experience, section, isPreview, isLast }) {
           {/* Logo or initials fallback */}
           <div className="logo">
             {logo ? (
-              <Image
+              <ImageWithFallback
                 src={logo}
+                fallback={logoFallback}
                 alt={`${company} organization logo for ${role}`}
                 width={40}
                 height={40}

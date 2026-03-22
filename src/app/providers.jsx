@@ -8,6 +8,7 @@ export default function Providers({ children }) {
       attribute="data-theme"
       defaultTheme="dark"
       enableSystem={false}
+      className="main-content-provider"
     >
       {children}
     </ThemeProvider>

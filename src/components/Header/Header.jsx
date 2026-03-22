@@ -1,48 +1,35 @@
-// nextjs client components
-import Link from "next/link";
-import Image from "next/image";
-
 // components
-import { Navigation, Menu } from "@/components";
+import { Navigation, Menu, Logo } from "@/components";
 
 // styles
 import "./Header.scss";
 
-// logo
-const logo =
-  "https://ik.imagekit.io/moulahguine/myPortfolio/portfolioLogo/logo?updatedAt=1773486593918&tr=q-80,w-800,h-800";
-
 export default function Header() {
   return (
     <>
-      {/* start desktop header */}
+      {/* desktop header */}
       <header className="header">
+        {/* container */}
         <div className="container">
-          {/* start logo */}
-          <Link href="/" className="header__logo" aria-label="Home">
-            <Image
-              src={logo}
-              className="header__logo-img"
-              alt="Mohamed Oulahguine portfolio logo"
-              width={40}
-              height={40}
-              priority
-              quality={100}
-            />
-          </Link>
-          {/* end logo */}
-          {/* start navigation */}
+          {/* logo */}
+          <Logo
+            linkClassName="header__logo"
+            imageClassName="header__logo-img"
+            ariaLabel="Home"
+            alt="logo"
+            fill={true}
+            priority
+          />
+          {/* navigation */}
           <Navigation className="nav-desktop" />
-          {/* end navigation */}
+          {/* menu */}
           <Menu />
         </div>
       </header>
-      {/* end desktop header */}
-      {/* start mobile navigation */}
+      {/* mobile header */}
       <div className="mobile-nav">
         <Navigation />
       </div>
-      {/* end mobile navigation */}
     </>
   );
 }

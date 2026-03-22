@@ -8,11 +8,19 @@ import {
   HiOutlineBriefcase,
   HiOutlineChatBubbleLeftRight,
 } from "react-icons/hi2";
+
+import { GrHomeRounded } from "react-icons/gr";
+
 import "./Navigation.scss";
 
 // Navigation items
 const NAVIGATION_ITEMS = [
-  { id: "home", label: "Home", path: "/", icon: HiOutlineHome },
+  {
+    id: "home",
+    label: "Home",
+    path: "/",
+    icon: GrHomeRounded,
+  },
   {
     id: "projects",
     label: "Projects",
@@ -65,8 +73,10 @@ export default function Navigation({ className }) {
                 aria-current={isActive ? "page" : undefined}
               >
                 {Icon && (
-                  <span className="nav__icon" aria-hidden="true">
-                    <Icon size={18} aria-hidden="true" />
+                  <span className="nav__icon-wrapper" aria-hidden="true">
+                    <span className="nav__icon">
+                      <Icon aria-hidden="true" />
+                    </span>
                   </span>
                 )}
                 <span className="nav__link__inner">

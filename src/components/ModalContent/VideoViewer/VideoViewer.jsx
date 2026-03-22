@@ -1,15 +1,13 @@
 "use client";
 
 // React
-import { useEffect, useRef } from "react";
-
-// Styles
-import "./VideoViewer.scss";
+import { useEffect, useRef, useState } from "react";
 
 // Component
 export default function VideoViewer({
   src,
-  className = "myvideo__intro",
+  fallbackSrc,
+  className = "",
   ariaLabel = "Video content",
   autoplayInline = false,
   loop = false,
@@ -19,6 +17,11 @@ export default function VideoViewer({
   volume = 1,
 }) {
   const videoRef = useRef(null);
+  const [activeSrc, setActiveSrc] = useState(src);
+
+  useEffect(() => {
+    setActiveSrc(src);
+  }, [src, fallbackSrc]);
 
   // Use effect to handle video playback
   useEffect(() => {
@@ -56,22 +59,25 @@ export default function VideoViewer({
 
   return (
     // Video viewer
-    <div className="videoViewer">
+    <div className="modal-content-viewer modal-content-viewer--video">
       {/* Video viewer frame  */}
-      <div className={`videoViewer__frame ${isOpen ? "is-open" : ""}`}>
+      <div className="modal-content-viewer__frame modal-content-viewer__frame--video">
         {/* Video element  */}
         <video
           ref={videoRef}
-          className={className}
-          src={src}
+          className={`modal-content-viewer__media modal-content-viewer__media--video ${className}`.trim()}
+          src={activeSrc}
+          onError={() => {
+            if (fallbackSrc && activeSrc !== fallbackSrc) {
+              setActiveSrc(fallbackSrc);
+            }
+          }}
           aria-label={ariaLabel}
           title={ariaLabel}
           muted
           loop={loop}
           playsInline={playsInline}
           preload={preload}
-          sizes="(max-width: 768px) 100vw, 100vw"
-          quality={100}
         />
       </div>
     </div>

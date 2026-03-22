@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ImageWithFallback } from "@/components";
 import {
   getProjectBySlug,
   getStaticProjectParams,
@@ -36,10 +36,6 @@ export async function generateMetadata({ params }) {
   };
 }
 
-/**
- * Route handler for /projects/[slug]
- * Renders project detail page inline
- */
 export default async function ProjectDetail({ params }) {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
@@ -105,8 +101,9 @@ export default async function ProjectDetail({ params }) {
 
         {/* Visual proof */}
         <figure className="case-study__visual">
-          <Image
+          <ImageWithFallback
             src={project.media.image}
+            fallback={project.media.fallback}
             alt={`${project.title} full case-study hero image showing the implemented frontend interface`}
             width={1200}
             height={700}

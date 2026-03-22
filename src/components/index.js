@@ -1,5 +1,6 @@
 // Header Component
 export { default as Header } from "./Header/Header";
+export { default as Logo } from "./Logo/Logo";
 
 // Modal Component
 export { default as Modal } from "./Modal/Modal";
@@ -31,7 +32,10 @@ export { default as ActionPillButton } from "./ActionPillButton/ActionPillButton
 // ModalContent Components
 export { default as ImageViewer } from "./ModalContent/ImageViewer/ImageViewer";
 export { default as VideoViewer } from "./ModalContent/VideoViewer/VideoViewer";
-export { default as DefaultContent } from "./ModalContent/DefaultContent/DefaultContent";
 
 // Icons
 export { default as VerifiedBadge } from "./Icons/VerifiedBadge";
+
+// Shared UI
+export { default as ImageWithFallback } from "./ImageWithFallback/ImageWithFallback";
+export { IMAGEKIT_MEDIA, LOCAL_MEDIA } from "./Media/constants";

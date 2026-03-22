@@ -1,4 +1,4 @@
-import { MdClose } from "react-icons/md";
+import { TfiClose } from "react-icons/tfi";
 import "./CloseButton.scss";
 
 const CloseButton = ({
@@ -15,7 +15,7 @@ const CloseButton = ({
       aria-label={ariaLabel}
       {...props}
     >
-      <MdClose aria-hidden="true" />
+      <TfiClose aria-hidden="true" />
     </button>
   );
 };

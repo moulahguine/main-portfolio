@@ -208,9 +208,21 @@
 
           // Hero location section
           .hero__location {
+            display: flex;
+            align-items: center;
+            gap: $space-4;
             font-size: $font-size-12;
             color: var(--gray-600);
             font-weight: $fw-medium;
+
+            .nationality {
+              color: var(--gray-500);
+            }
+
+            svg {
+              color: var(--gray-700);
+              font-size: clamp($font-size-12, 1.5vw, $font-size-14);
+            }
           }
 
           @media (max-width: $breakpoint-md) {

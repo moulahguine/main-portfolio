@@ -1,33 +1,29 @@
 "use client";
-// React
-import Image from "next/image";
-import { useTheme } from "next-themes";
 // Icons
 import { BsFillPlayCircleFill } from "react-icons/bs";
 // Motion;
 import { motion } from "framer-motion";
+import useThemeAsset from "@/hooks/useThemeAsset";
 // Components
-import { ModalTrigger, VideoViewer } from "@/components";
-
-// Data URLs
-const VIDEO_URL =
-  "https://ik.imagekit.io/moulahguine/myPortfolio/introVideo/introVideo?updatedAt=1773501165021?tr=f-auto,q-92,w-480,h-270";
-const POSTER_DARK_URL =
-  "https://ik.imagekit.io/moulahguine/myPortfolio/introVideo/ThumbnailDarkTheme?tr=f-auto,q-92,dpr-2,w-800";
-const POSTER_LIGHT_URL =
-  "https://ik.imagekit.io/moulahguine/myPortfolio/introVideo/ThumbnailLightTheme?tr=f-auto,q-92,dpr-2,w-800";
+import {
+  ModalTrigger,
+  VideoViewer,
+  ImageWithFallback,
+  IMAGEKIT_MEDIA,
+  LOCAL_MEDIA,
+} from "@/components";
 
 // Component
 export default function IntroVideo() {
-  const { theme, resolvedTheme } = useTheme();
-
-  const rootTheme =
-    typeof document !== "undefined"
-      ? document.documentElement.getAttribute("data-theme")
-      : null;
-  const activeTheme = resolvedTheme ?? theme ?? rootTheme ?? "dark";
-  const posterSrc =
-    activeTheme === "light" ? POSTER_LIGHT_URL : POSTER_DARK_URL;
+  const { pickByTheme } = useThemeAsset({ fallbackTheme: "dark" });
+  const posterSrc = pickByTheme(
+    IMAGEKIT_MEDIA.about.posterLight,
+    IMAGEKIT_MEDIA.about.posterDark
+  );
+  const posterFallback = pickByTheme(
+    LOCAL_MEDIA.about.posterLight,
+    LOCAL_MEDIA.about.posterDark
+  );
 
   return (
     <>
@@ -41,26 +37,26 @@ export default function IntroVideo() {
             type="button"
             className="video__preview"
             onClick={open}
-            aria-label="Play Mohamed Oulahguine's frontend developer introduction video"
+            aria-label="Play introduction video"
             initial={{ scale: 0.9 }}
             whileInView={{ scale: 1 }}
             exit={{ scale: 0.9 }}
             viewport={{
               once: false,
               amount: 0.35,
-              margin: "0px 0px -50px 0px",
+              margin: "0px 0px -100px 0px",
             }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
           >
             {/*  Thumbnail image */}
             <div className="thumbnail">
-              <Image
+              <ImageWithFallback
                 key={posterSrc}
                 src={posterSrc}
-                alt="Thumbnail preview for Mohamed Oulahguine's frontend developer introduction video"
+                fallback={posterFallback}
+                alt="Introduction video thumbnail"
                 fill
                 sizes="(max-width: 768px) 100vw, 100vw"
-                quality={100}
                 className="thumbnail__img"
               />
             </div>
@@ -74,12 +70,13 @@ export default function IntroVideo() {
       >
         {({ isOpen }) => (
           <VideoViewer
-            src={VIDEO_URL}
+            src={IMAGEKIT_MEDIA.about.video}
+            fallbackSrc={LOCAL_MEDIA.about.video}
             isOpen={isOpen}
             autoplayInline={false}
             loop={false}
             volume={0.1}
-            ariaLabel="Mohamed Oulahguine introducing his frontend development background, projects, and technical focus"
+            ariaLabel="Introduction video"
           />
         )}
       </ModalTrigger>

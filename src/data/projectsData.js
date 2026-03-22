@@ -1,4 +1,5 @@
 import { technologies } from "@/data/skillsData";
+import { IMAGE_ASSETS } from "@/assets/images";
 
 const porfolio =
   "https://ik.imagekit.io/moulahguine/myPortfolio/projects/myPortfolio?tr=f-auto,q-92,dpr-2,w-1200,h-800";
@@ -44,6 +45,7 @@ const projectsData = [
 
     media: {
       image: porfolio,
+      fallback: IMAGE_ASSETS.projects.myPortfolio,
     },
   },
 
@@ -84,6 +86,7 @@ const projectsData = [
 
     media: {
       image: modernLandingPage,
+      fallback: IMAGE_ASSETS.projects.myPortfolio,
     },
   },
 ];

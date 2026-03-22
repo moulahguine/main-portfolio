@@ -111,7 +111,7 @@ $menu-transition: 0.3s ease-in-out;
     border: 1px solid var(--gray-200);
     background-color: var(--gray-50);
     border-radius: $radius-md;
-    box-shadow: 0 0 $space-8 color-mix(in srgb, var(--black) 40%, transparent);
+    box-shadow: 0 0 $space-4 color-mix(in srgb, var(--black) 40%, transparent);
     z-index: $z-dropdown;
 
     // menu section styles
