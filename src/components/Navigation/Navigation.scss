@@ -7,23 +7,23 @@
   padding: $space-4;
 
   // list
-  &__list {
+  .nav__list {
     @include flex-between;
-    gap: $space-4;
+    gap: $space-8;
     height: 100%;
 
     // item
     .nav__item {
-      display: flex;
-      // align-items: center;
+      @include flex-center;
+      border-radius: $radius-xl;
+      overflow: hidden;
 
       // link
       .nav__link {
-        color: var(--gray-500);
-        font-size: clamp($font-size-12, 2vw, $font-size-16);
-        padding: clamp($space-4, 1vw, $space-8) clamp($space-8, 1vw, $space-12);
         @include flex-center;
-        // align-items: start;
+        color: var(--gray-600);
+        padding: clamp($space-4, 1vw, $space-8) clamp($space-8, 1vw, $space-12);
+        transition: all 0.3s ease-in-out;
 
         @media (max-width: $breakpoint-md) {
           @include flex-column;
@@ -32,80 +32,67 @@
         }
 
         .nav__icon {
-          @include flex-center;
+          display: none;
 
-          svg {
-            font-size: $font-size-14;
-            fill: none;
-            stroke: var(--gray-900);
+          @media (max-width: $breakpoint-md) {
+            display: block;
+
+            svg {
+              color: inherit;
+              font-size: $font-size-14;
+            }
           }
         }
 
-        // inner
-        .nav__link__inner {
-          display: inline-block;
-          overflow: hidden;
-          height: 1.25em;
+        .nav__label {
+          padding: 2px $space-8;
+          font-size: clamp($font-size-14, 2vw, $font-size-16);
+          font-weight: $fw-medium;
+          color: inherit;
 
-          // slide
-          .nav__link__slide {
-            @include flex-column;
-            will-change: transform;
-            color: inherit;
-            transform: translateY(0);
-            transition: all 0.3s ease-in-out;
-            .nav__link__text:last-child {
-              color: var(--gray-900);
-            }
+          @media (max-width: $breakpoint-md) {
+            padding: 0;
           }
         }
 
         // hover slide
-        &:not(.active):hover {
-          .nav__icon {
-            svg {
-              stroke: none;
-              fill: var(--gray-900);
-              font-size: $font-size-16;
-            }
+        @media (hover: hover) {
+          &:not(.active):hover {
+            color: var(--gray-700);
+            background-color: color-mix(
+              in srgb,
+              var(--gray-200) 30%,
+              transparent
+            );
           }
-
-          .nav__link__slide {
-            transform: translateY(-52%);
-          }
-        }
-
-        // text
-        .nav__link__text {
-          @include flex-center;
-          padding: $space-8 $space-12;
-          flex-shrink: 0;
-          height: 1.25em;
-          white-space: nowrap;
-          font-weight: $fw-semibold;
         }
 
         // active
         &.active {
           color: var(--gray-900);
-          font-weight: $fw-bold;
           background-color: color-mix(
             in srgb,
             var(--gray-300) 40%,
             transparent
           );
-          border-radius: $radius-xl;
+
+          .nav__label {
+            font-weight: $fw-bold;
+          }
+
+          @media (max-width: $breakpoint-md) {
+            color: var(--gray-900);
+            background-color: color-mix(
+              in srgb,
+              var(--gray-400) 40%,
+              transparent
+            );
+          }
 
           .nav__icon {
             svg {
-              font-size: $font-size-16;
-              stroke: none;
               fill: var(--gray-900);
             }
-          }
-
-          .nav__link__slide {
-            transform: translateY(-52%);
           }
         }
       }

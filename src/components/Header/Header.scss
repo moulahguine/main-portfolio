@@ -3,11 +3,10 @@
 // header
 .header {
   width: 100%;
-  padding: $space-8 0;
   position: sticky;
   top: 0;
-  background-color: color-mix(in srgb, var(--white) 70%, transparent);
-  backdrop-filter: blur(10px);
+  background-color: color-mix(in srgb, var(--white) 90%, transparent);
+  backdrop-filter: blur(28px);
   z-index: $z-header;
 
   @media (max-width: $breakpoint-md) {
@@ -19,9 +18,8 @@
   .container {
     @include container;
     @include flex-between;
-    min-height: 40px;
     background-color: transparent;
-    padding: $space-4 0;
+    padding: clamp(calc($space-8 - 2px), 1vw, $space-12) 0;
     border-radius: 0;
   }
 
@@ -68,13 +66,13 @@
   @media (max-width: $breakpoint-md) {
     @include flex-center;
     position: fixed;
-    bottom: $space-8;
+    bottom: $space-12;
     left: 50%;
     transform: translateX(-50%);
-    background-color: var(--gray-200);
-    border: 1px solid var(--gray-400);
+    background-color: var(--gray-100);
+    border: solid 1px var(--gray-300);
     border-radius: $radius-xl;
     padding: 0 2px;
-    z-index: $z-header;
+    z-index: 1000 !important;
   }
 }

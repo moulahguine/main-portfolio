@@ -48,12 +48,6 @@ $menu-transition: 0.3s ease-in-out;
       }
     }
 
-    &:hover,
-    &--active {
-      @include glass-bg(color-mix(in srgb, $white 10%, transparent));
-      @include line-active-color;
-    }
-
     @media (hover: hover) {
       &:hover:not(.menu__trigger--active) {
         .menu__trigger-line {
@@ -92,10 +86,6 @@ $menu-transition: 0.3s ease-in-out;
           transform: translateX(0) translateY(-8px) rotate(-45deg);
         }
       }
-    }
-
-    @media (max-width: $breakpoint-md) {
-      @include glass-bg(color-mix(in srgb, $white 10%, transparent));
     }
   }
 

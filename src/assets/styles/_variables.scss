@@ -71,20 +71,10 @@ $z-modal-content: 1110;
 $z-route-transition: 1200;
 
 // ----------------------- MODAL TOKENS -----------------------
-// $modal-width-fluid: 92vw;
-// $modal-width-sm: 28rem; // 448px
-// $modal-width-md: 36rem; // 576px
-// $modal-width-lg: 56rem; // 896px
-// $modal-width-xl: 72rem; // 1152px
-
-// $modal-max-height-sm: 60dvh;
-// $modal-max-height-md: 70dvh;
-// $modal-max-height-lg: 80dvh;
-// $modal-max-height-xl: 85dvh;
 
 $modal-max-width-sm: 28rem;
 $modal-max-width-md: 36rem;
-$modal-max-width-lg: 45.3125rem; // 725px
+$modal-max-width-lg: 45.3125rem;
 $modal-max-height-desktop: 85dvh;
 $modal-max-height-mobile: 65dvh;
 
