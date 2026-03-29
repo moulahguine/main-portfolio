@@ -1,13 +1,9 @@
 import { IMAGE_ASSETS } from "@/assets/images";
 import { VIDEO_ASSETS } from "@/assets/video";
-import { FAVICON_ASSETS } from "@/assets/favicon";
 
 export const IMAGEKIT_MEDIA = {
   header: {
-    logoLight:
-      "https://ik.imagekit.io/moulahguine/myPortfolio/portfolioLogo/faviconlight",
-    logoDark:
-      "https://ik.imagekit.io/moulahguine/myPortfolio/portfolioLogo/favicondark",
+    logo: "https://ik.imagekit.io/moulahguine/myPortfolio/portfolioLogo/Logo?updatedAt=1774776747962",
   },
   hero: {
     profilePicture:
@@ -26,12 +22,8 @@ export const IMAGEKIT_MEDIA = {
 };
 
 export const LOCAL_MEDIA = {
-  fallback: {
-    generic: "/og/og-image.png",
-  },
   header: {
-    logoLight: IMAGE_ASSETS.portfolioLogo.faviconLight,
-    logoDark: IMAGE_ASSETS.portfolioLogo.faviconDark,
+    logo: IMAGE_ASSETS.profileLogo.profileLogo,
   },
   hero: {
     profilePicture: IMAGE_ASSETS.profilePicture.profilePicture,
@@ -41,9 +33,5 @@ export const LOCAL_MEDIA = {
     video: VIDEO_ASSETS.introVideo.src,
     posterDark: VIDEO_ASSETS.introVideo.thumbnailDark,
     posterLight: VIDEO_ASSETS.introVideo.thumbnailLight,
-  },
-  favicon: FAVICON_ASSETS,
-  og: {
-    image: "/og/og-image.png",
   },
 };

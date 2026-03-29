@@ -4,12 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 // icons
-import {
-  GrHomeRounded,
-  GrProjects,
-  GrUserWorker,
-  GrBlog,
-} from "react-icons/gr";
+import { GrHomeRounded } from "react-icons/gr";
+import { FaBlog } from "react-icons/fa";
+import { FiGrid } from "react-icons/fi";
+import { MdOutlineWorkOutline } from "react-icons/md";
 
 // styles
 import "./Navigation.scss";
@@ -26,19 +24,19 @@ const NAVIGATION_ITEMS = [
     id: "projects",
     label: "Projects",
     path: "/projects",
-    icon: GrProjects,
+    icon: FiGrid,
   },
   {
     id: "experience",
     label: "Experience",
     path: "/experience",
-    icon: GrUserWorker,
+    icon: MdOutlineWorkOutline,
   },
   {
     id: "blog",
     label: "Blog",
     path: "/blog",
-    icon: GrBlog,
+    icon: FaBlog,
   },
 ];
 

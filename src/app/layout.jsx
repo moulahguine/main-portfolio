@@ -1,5 +1,5 @@
 import { Comic_Neue } from "next/font/google";
-import { metadata as siteMetadata } from "./metadata";
+import { generateMetadata } from "./metadata";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import Providers from "./providers";
@@ -19,8 +19,7 @@ export const viewport = {
   viewportFit: "cover",
 };
 
-// Metadata
-export const metadata = siteMetadata;
+export { generateMetadata };
 
 // Person JSON-LD
 const personJsonLd = {
@@ -81,6 +80,7 @@ export default function RootLayout({ children }) {
       className={comicNeue.variable}
       data-theme="dark"
       suppressHydrationWarning
+      style={{ scrollBehavior: "smooth" }}
     >
       <head>
         <script

@@ -1,10 +1,11 @@
 @use "variables" as *;
 
-// --- Dark theme (default) ---
+// --- Dark theme ---
 :root,
 html[data-theme="light"] {
   --black: #{$black};
   --white: #{$white};
+  --theme-logo-filter: none;
 
   --gray-950: #{$gray-950};
   --gray-900: #{$gray-900};

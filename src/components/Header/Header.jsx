@@ -15,9 +15,10 @@ export default function Header() {
           <Logo
             linkClassName="header__logo"
             imageClassName="header__logo-img"
-            ariaLabel="Home"
+            aria-label="Home"
             alt="logo"
-            fill={true}
+            width={50}
+            height={50}
             priority
           />
           {/* navigation */}

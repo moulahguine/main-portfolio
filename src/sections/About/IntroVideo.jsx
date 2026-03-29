@@ -76,7 +76,7 @@ export default function IntroVideo() {
             autoplayInline={false}
             loop={false}
             volume={0.1}
-            ariaLabel="Introduction video"
+            aria-label="Introduction video"
           />
         )}
       </ModalTrigger>

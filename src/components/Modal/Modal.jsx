@@ -74,7 +74,11 @@ export default function Modal({
   const hasHeader = showHeader && (title || showCloseButton);
   const contentVariantClass = hasHeader ? "with-header" : "without-header";
   const closeButton = (
-    <CloseButton onClick={onClose} ariaLabel="Close modal" ariaHidden={true} />
+    <CloseButton
+      onClick={onClose}
+      aria-label="Close modal"
+      aria-hidden={true}
+    />
   );
 
   const modalContent = (

@@ -4,7 +4,7 @@
 import { useState, useCallback, useRef } from "react";
 
 // Components
-import { ModalTrigger, ActionPillButton } from "@/components";
+import { ModalTrigger, ActionPillButton, LOCAL_MEDIA } from "@/components";
 
 // Icons
 import { QRCodeSVG } from "qrcode.react";
@@ -16,6 +16,10 @@ import "./SharePortfolio.scss";
 
 // Data
 const CANONICAL_URL = "https://mohamedoulahguine.com";
+
+const profileLogo = LOCAL_MEDIA.header.logo;
+const qrImageSrc =
+  typeof profileLogo === "string" ? profileLogo : profileLogo.src;
 
 // Share portfolio component
 export default function SharePortfolio({ renderTrigger }) {
@@ -50,9 +54,6 @@ export default function SharePortfolio({ renderTrigger }) {
     }
   }, []);
 
-  // QR image source
-  const qrImageSrc = "/favicon/android-chrome-512x512.png";
-
   return (
     // Modal trigger
     <ModalTrigger
@@ -83,13 +84,14 @@ export default function SharePortfolio({ renderTrigger }) {
         <div ref={cardRef} className="qr">
           <QRCodeSVG
             value={CANONICAL_URL}
-            size={250}
+            size={270}
             level="H"
             marginSize={0}
             imageSettings={{
               src: qrImageSrc,
-              height: 50,
-              width: 50,
+              width: 40,
+              height: 40,
+              borderRadius: 50,
               excavate: true,
             }}
             aria-label="QR code to portfolio"
@@ -98,7 +100,7 @@ export default function SharePortfolio({ renderTrigger }) {
         {/* Download button */}
         <ActionPillButton
           onClick={handleDownload}
-          ariaLabel={downloaded ? "Downloaded" : "Download card"}
+          aria-label={downloaded ? "Downloaded" : "Download card"}
           title="Download Card "
           label="Download Card"
           doneLabel="Done!"

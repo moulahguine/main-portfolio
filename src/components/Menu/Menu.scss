@@ -22,6 +22,8 @@ $menu-transition: 0.3s ease-in-out;
     padding: 0 $space-4;
     border-radius: $radius-md;
     overflow: hidden;
+    background-color: color-mix(in srgb, var(--white) 80%, transparent);
+    backdrop-filter: blur(8px);
     transition:
       background-color $menu-transition,
       backdrop-filter $menu-transition;
@@ -31,7 +33,7 @@ $menu-transition: 0.3s ease-in-out;
       width: calc(100% - $space-4);
       height: 1px;
       margin: calc($space-8 - 1px) auto;
-      background-color: var(--gray-500);
+      background-color: var(--gray-700);
       transition:
         width $menu-transition,
         transform $menu-transition,
@@ -71,6 +73,7 @@ $menu-transition: 0.3s ease-in-out;
 
     &--active {
       .menu__trigger-line {
+        background-color: var(--gray-900);
         &--first {
           width: 80%;
           transform: translateX(0) translateY(8px) rotate(45deg);
@@ -145,6 +148,9 @@ $menu-transition: 0.3s ease-in-out;
         z-index: 1;
       }
 
+      svg.active {
+        fill: var(--gray-100);
+      }
       .menu__theme-hover-indicator,
       .menu__theme-active-indicator {
         position: absolute;
@@ -187,7 +193,6 @@ $menu-transition: 0.3s ease-in-out;
           font-weight: $fw-bold;
           color: var(--gray-600);
           position: relative;
-
           z-index: $z-base;
         }
 

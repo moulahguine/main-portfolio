@@ -49,7 +49,7 @@ export default function Menu() {
       const targetElement = target instanceof Element ? target : null;
 
       const clickedInsideModal = targetElement?.closest(
-        ".modal__overlay, .modal__container"
+        ".modal__overlay, .modal__container",
       );
       if (clickedInsideModal) return;
 
@@ -86,7 +86,7 @@ export default function Menu() {
       setHoveredTheme(null);
       setActiveQuickAction(null);
       const firstInteractive = panelRef.current?.querySelector(
-        "button, a[href], [tabindex]:not([tabindex='-1'])"
+        "button, a[href], [tabindex]:not([tabindex='-1'])",
       );
       firstInteractive?.focus();
       return;
@@ -226,7 +226,11 @@ export default function Menu() {
                           }}
                         />
                       )}
-                      <Icon size={16} aria-hidden="true" />
+                      <Icon
+                        className={`${isActive ? "active" : ""}`}
+                        size={16}
+                        aria-hidden="true"
+                      />
                       <span className="menu__theme-label">{option.label}</span>
                     </motion.button>
                   );

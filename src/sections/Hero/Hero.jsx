@@ -67,7 +67,7 @@ export default function Hero() {
             <ActionPillButton
               href={RESUME_URL}
               download
-              ariaLabel="Download Resume (PDF)"
+              aria-label="Download Resume (PDF)"
               title="Download Resume"
               label="Resume"
               variant="resume"
