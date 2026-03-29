@@ -121,7 +121,17 @@
               scale: 1.3;
               fill: var(--gray-900);
               stroke: var(--gray-200);
-              stroke-width: 0.6px;
+            }
+          }
+
+          &:nth-child(3) {
+            .nav__icon {
+              svg {
+                fill: red !important;
+                stroke: red;
+                color: red;
+                stroke-width: -5px;
+              }
             }
           }
         }

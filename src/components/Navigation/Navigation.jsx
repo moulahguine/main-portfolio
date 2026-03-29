@@ -4,13 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 // icons
-import { GrHomeRounded } from "react-icons/gr";
-import { FaBlog } from "react-icons/fa";
-import { FiGrid } from "react-icons/fi";
-
-import { BiBriefcaseAlt } from "react-icons/bi";
-import { TbBrandBlogger } from "react-icons/tb";
-import { TbBriefcase } from "react-icons/tb";
+import {
+  TbSmartHome,
+  TbLayoutGrid,
+  TbBrandBlogger,
+  TbBriefcase,
+} from "react-icons/tb";
 
 // styles
 import "./Navigation.scss";
@@ -21,13 +20,13 @@ const NAVIGATION_ITEMS = [
     id: "home",
     label: "Home",
     path: "/",
-    icon: GrHomeRounded,
+    icon: TbSmartHome,
   },
   {
     id: "projects",
     label: "Projects",
     path: "/projects",
-    icon: FiGrid,
+    icon: TbLayoutGrid,
   },
   {
     id: "experience",
