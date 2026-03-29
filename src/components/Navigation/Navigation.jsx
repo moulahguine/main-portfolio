@@ -7,7 +7,10 @@ import { usePathname } from "next/navigation";
 import { GrHomeRounded } from "react-icons/gr";
 import { FaBlog } from "react-icons/fa";
 import { FiGrid } from "react-icons/fi";
-import { MdOutlineWorkOutline } from "react-icons/md";
+
+import { BiBriefcaseAlt } from "react-icons/bi";
+import { TbBrandBlogger } from "react-icons/tb";
+import { TbBriefcase } from "react-icons/tb";
 
 // styles
 import "./Navigation.scss";
@@ -30,13 +33,13 @@ const NAVIGATION_ITEMS = [
     id: "experience",
     label: "Experience",
     path: "/experience",
-    icon: MdOutlineWorkOutline,
+    icon: TbBriefcase,
   },
   {
     id: "blog",
     label: "Blog",
     path: "/blog",
-    icon: FaBlog,
+    icon: TbBrandBlogger,
   },
 ];
 
