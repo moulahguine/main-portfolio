@@ -27,7 +27,7 @@ export default function ConnectLinks({ renderTrigger }) {
           >
             {/* Trigger icon */}
             <span className="social__icon" aria-hidden="true">
-              <RxPerson size={18} aria-hidden="true" />
+              <RxPerson size={18} aria-hidden="true" role="img" />
             </span>
           </button>
         ))
@@ -52,7 +52,7 @@ export default function ConnectLinks({ renderTrigger }) {
                   style={{ "--hover-color": social.color }}
                 >
                   <span className="social-link-icon">
-                    <Icon size={22} aria-hidden="true" />
+                    <Icon size={22} aria-hidden="true" role="img" />
                   </span>
                   <span className="social-link-label">{social.label}</span>
                 </a>

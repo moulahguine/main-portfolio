@@ -18,11 +18,11 @@ export default function IntroVideo() {
   const { pickByTheme } = useThemeAsset({ fallbackTheme: "dark" });
   const posterSrc = pickByTheme(
     IMAGEKIT_MEDIA.about.posterLight,
-    IMAGEKIT_MEDIA.about.posterDark
+    IMAGEKIT_MEDIA.about.posterDark,
   );
   const posterFallback = pickByTheme(
     LOCAL_MEDIA.about.posterLight,
-    LOCAL_MEDIA.about.posterDark
+    LOCAL_MEDIA.about.posterDark,
   );
 
   return (
@@ -63,7 +63,7 @@ export default function IntroVideo() {
 
             {/* Play button overlay */}
             <span className="video__preview__play">
-              <BsFillPlayCircleFill aria-hidden="true" />
+              <BsFillPlayCircleFill aria-hidden="true" role="img" />
             </span>
           </motion.button>
         )}

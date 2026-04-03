@@ -32,7 +32,7 @@ export default function SkillsToggle({ children }) {
               aria-label="Show all skills"
               type="button"
             >
-              <GoChevronDown size={24} aria-hidden="true" />
+              <GoChevronDown size={24} aria-hidden="true" role="img" />
             </button>
           </div>
         ) : (
@@ -43,7 +43,7 @@ export default function SkillsToggle({ children }) {
             aria-label="Show less skills"
             type="button"
           >
-            <GoChevronUp size={24} aria-hidden="true" />
+            <GoChevronUp size={24} aria-hidden="true" role="img" />
             Show Less
           </button>
         )}

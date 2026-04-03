@@ -30,7 +30,7 @@ export default function ProjectCard({ project }) {
         <h3 className="project-card__title">
           {project.title}
 
-          <GoArrowUpRight size={20} />
+          <GoArrowUpRight size={20} role="img" />
         </h3>
 
         <div className="project-card__content">

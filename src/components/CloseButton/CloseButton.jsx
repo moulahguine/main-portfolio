@@ -15,7 +15,7 @@ const CloseButton = ({
       aria-label={ariaLabel}
       {...props}
     >
-      <TfiClose aria-hidden="true" />
+      <TfiClose aria-hidden="true" role="img" />
     </button>
   );
 };

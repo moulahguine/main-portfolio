@@ -17,7 +17,7 @@ import "./SharePortfolio.scss";
 // Data
 const CANONICAL_URL = "https://mohamedoulahguine.com";
 
-const profileLogo = LOCAL_MEDIA.header.logo;
+const profileLogo = LOCAL_MEDIA.logo.logo;
 const qrImageSrc =
   typeof profileLogo === "string" ? profileLogo : profileLogo.src;
 
@@ -72,7 +72,7 @@ export default function SharePortfolio({ renderTrigger }) {
           >
             {/* Icon */}
             <span className="share-portfolio__icon" aria-hidden="true">
-              <PiShareFatLight size={18} aria-hidden="true" />
+              <PiShareFatLight size={18} aria-hidden="true" role="img" />
             </span>
           </button>
         ))

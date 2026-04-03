@@ -21,11 +21,17 @@
       @include next-button-style;
     }
 
+    .container-inner {
+      display: grid;
+      grid-template-columns: 50px 1fr;
+    }
+
     // Tabs container
     .tabs {
+      height: 700px;
       display: grid;
-      grid-template-columns: repeat(var(--tab-count), 1fr);
-      grid-template-rows: 1fr;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(var(--tab-count), 1fr);
       position: relative;
       gap: clamp($space-4, 2vw, $space-8);
       margin: clamp($space-8, 2vw, $space-16) 0;
@@ -39,10 +45,10 @@
         position: absolute;
         top: $space-4;
         left: $space-4;
-        width: calc(calc(100% - #{$space-8}) / var(--tab-count));
-        height: calc(100% - #{$space-8});
+        height: calc(calc(100% - #{$space-8}) / var(--tab-count));
+        width: calc(100% - #{$space-8});
         border-radius: $radius-md;
-        transform: translateX(calc(var(--active-index) * 100%));
+        transform: translateY(calc(var(--active-index) * 100%));
         background-color: var(--white);
         transition: all 0.3s ease-in-out;
         z-index: 0;
@@ -55,6 +61,7 @@
       // Individual tab button
       .tab {
         @include flex-center;
+        flex-direction: column;
         gap: clamp($space-4, 2vw, $space-8);
         position: relative;
         z-index: $z-base;
@@ -71,6 +78,10 @@
         svg {
           color: inherit !important;
           transition: all 0.3s ease-in-out !important;
+        }
+
+        .label {
+          writing-mode: sideways-lr;
         }
 
         &.active {

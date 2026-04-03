@@ -50,7 +50,7 @@ export default function Hero() {
               </p>
               {/* Hero location */}
               <address className="hero__location">
-                <PiMapPinLight aria-hidden="true" />
+                <PiMapPinLight aria-hidden="true" role="img" />
                 Istanbul, Turkey |{" "}
                 <span className="nationality" title="Moroccan">
                   {" "}

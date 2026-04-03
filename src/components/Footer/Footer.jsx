@@ -31,7 +31,7 @@ const Footer = () => {
             aria-label="LinkedIn (opens in new tab)"
             title="LinkedIn"
           >
-            <SlSocialLinkedin />
+            <SlSocialLinkedin role="img" aria-hidden="true" />
           </a>
           <a
             href="https://github.com/moulahguine"
@@ -41,7 +41,7 @@ const Footer = () => {
             aria-label="GitHub (opens in new tab)"
             title="GitHub"
           >
-            <FaGithub />
+            <FaGithub role="img" aria-hidden="true" />
           </a>
           <a
             href="mailto:contact@moulahguine.dev"
@@ -49,7 +49,7 @@ const Footer = () => {
             aria-label="Send email"
             title="Email"
           >
-            <TfiEmail />
+            <TfiEmail role="img" aria-hidden="true" />
           </a>
         </div>
       </div>

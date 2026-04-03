@@ -1,13 +1,15 @@
 import Link from "next/link";
-import { ImageWithFallback, IMAGEKIT_MEDIA, LOCAL_MEDIA } from "@/components";
+import { ImageWithFallback } from "@/components";
 
 export default function Logo({
+  src,
+  fallback,
   withLink = true,
   href = "/",
-  ariaLabel = "Home",
+  ariaLabel,
   linkClassName,
-  imageClassName,
-  alt = "logo",
+  logoClassName,
+  alt,
   width,
   height,
   fill = false,
@@ -16,9 +18,9 @@ export default function Logo({
 }) {
   const logoImage = (
     <ImageWithFallback
-      src={IMAGEKIT_MEDIA.header.logo}
-      fallback={LOCAL_MEDIA.header.logo}
-      className={imageClassName}
+      src={src}
+      fallback={fallback}
+      className={logoClassName}
       alt={alt}
       width={width}
       height={height}

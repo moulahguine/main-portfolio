@@ -55,7 +55,7 @@ export default function HeroMedia({ classFigure, classImage }) {
 
             {/* Fullscreen icon */}
             <span className="hero__media-overlay">
-              <BsArrowsFullscreen aria-hidden="true" />
+              <BsArrowsFullscreen aria-hidden="true" role="img" />
             </span>
             <figcaption className="sr-only">profile picture</figcaption>
           </figure>

@@ -145,7 +145,7 @@ export default function ActionPillButton({
               exit={{ scale: 0.7, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <DoneIconComponent aria-hidden="true" />
+              <DoneIconComponent aria-hidden="true" role="img" />
             </motion.span>
           ) : showHoverIcon ? (
             <motion.span
@@ -156,7 +156,7 @@ export default function ActionPillButton({
               exit={{ y: -12, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <HoverIconComponent aria-hidden="true" />
+              <HoverIconComponent aria-hidden="true" role="img" />
             </motion.span>
           ) : (
             <motion.span
@@ -167,7 +167,7 @@ export default function ActionPillButton({
               exit={{ y: -12, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <IdleIconComponent aria-hidden="true" />
+              <IdleIconComponent aria-hidden="true" role="img" />
             </motion.span>
           )}
         </AnimatePresence>

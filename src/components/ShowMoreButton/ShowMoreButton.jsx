@@ -9,7 +9,7 @@ export default function ShowMoreButton({ href, label, count }) {
         view more {label}
         {typeof count === "number" && ` (${count} more)`}
       </span>
-      <GoArrowUpRight size={15} />
+      <GoArrowUpRight size={15} role="img" aria-hidden="true" />
     </Link>
   );
 }

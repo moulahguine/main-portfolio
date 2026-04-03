@@ -81,7 +81,12 @@ function SkillIcon({ icon, color = "#6C757D", title, className }) {
 
   return (
     <span className={mergedClassName} title={title}>
-      <IconComponent color={color} style={{ color }} aria-hidden={true} />
+      <IconComponent
+        color={color}
+        style={{ color }}
+        aria-hidden={true}
+        role="img"
+      />
     </span>
   );
 }

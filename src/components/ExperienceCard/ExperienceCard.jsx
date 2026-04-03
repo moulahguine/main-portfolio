@@ -68,7 +68,7 @@ function ExperienceCard({ experience, section, isPreview, isLast }) {
                     title={`Visit ${company} website`}
                   >
                     {company}
-                    <FiExternalLink size={15} />
+                    <FiExternalLink size={15} aria-hidden="true" role="img" />
                   </Link>
                 ) : (
                   company

@@ -2,17 +2,15 @@
 
 // nextjs client components
 import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
 import { useTheme } from "next-themes";
 
 // icons
 import {
   HiOutlineMoon,
   HiOutlineSun,
-  HiOutlineChatBubbleLeftRight,
+  HiLink,
+  HiMiniQrCode,
 } from "react-icons/hi2";
-import { RxPerson } from "react-icons/rx";
-import { PiShareFatLight } from "react-icons/pi";
 
 // components
 import { ConnectLinks, SharePortfolio } from "@/components";
@@ -23,17 +21,22 @@ import { AnimatePresence, motion } from "motion/react";
 // styles
 import "./Menu.scss";
 
+// theme options
+
+const themeOptions = [
+  { id: "dark", label: "Dark", icon: HiOutlineMoon },
+  { id: "light", label: "Light", icon: HiOutlineSun },
+];
+
 // Menu component
 export default function Menu() {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [activeQuickAction, setActiveQuickAction] = useState(null);
-  const [hoveredTheme, setHoveredTheme] = useState(null);
   const { theme, setTheme } = useTheme();
 
   const panelRef = useRef(null);
   const triggerRef = useRef(null);
-  const wasOpenRef = useRef(false);
 
   // mounted
   useEffect(() => {
@@ -79,32 +82,6 @@ export default function Menu() {
     };
   }, [isOpen]);
 
-  // handle focus
-  useEffect(() => {
-    if (isOpen) {
-      wasOpenRef.current = true;
-      setHoveredTheme(null);
-      setActiveQuickAction(null);
-      const firstInteractive = panelRef.current?.querySelector(
-        "button, a[href], [tabindex]:not([tabindex='-1'])",
-      );
-      firstInteractive?.focus();
-      return;
-    }
-
-    if (wasOpenRef.current) {
-      triggerRef.current?.focus();
-      wasOpenRef.current = false;
-    }
-  }, [isOpen]);
-
-  // theme options
-
-  const themeOptions = [
-    { id: "dark", label: "Dark", icon: HiOutlineMoon },
-    { id: "light", label: "Light", icon: HiOutlineSun },
-  ];
-
   // current theme
   const currentTheme = theme || "dark";
 
@@ -127,16 +104,6 @@ export default function Menu() {
     },
   });
 
-  // render quick action indicator
-  const renderQuickActionIndicator = (key) =>
-    activeQuickAction === key ? (
-      <motion.span
-        layoutId="menu-link-highlight"
-        className="menu__link-indicator"
-        transition={{ type: "spring", stiffness: 420, damping: 32 }}
-      />
-    ) : null;
-
   // render menu
   return (
     <div className="menu">
@@ -146,150 +113,135 @@ export default function Menu() {
         type="button"
         className={`menu__trigger ${isOpen ? "menu__trigger--active" : ""}`}
         onClick={() => setIsOpen((prev) => !prev)}
-        aria-label={isOpen ? "Close menu" : "Open menu"}
+        aria-label={isOpen ? "Close menu icon" : "Open menu icon"}
         aria-expanded={isOpen}
-        aria-haspopup="dialog"
+        aria-haspopup="true"
         aria-controls="menu-panel"
       >
-        <span className="menu__trigger-line menu__trigger-line--first"></span>
-        <span className="menu__trigger-line menu__trigger-line--second"></span>
-        <span className="menu__trigger-line menu__trigger-line--third"></span>
+        <span
+          className="menu__trigger-line menu__trigger-line--first"
+          aria-hidden="true"
+        ></span>
+        <span
+          className="menu__trigger-line menu__trigger-line--second"
+          aria-hidden="true"
+        ></span>
+        <span
+          className="menu__trigger-line menu__trigger-line--third"
+          aria-hidden="true"
+        ></span>
       </button>
 
       {/* Panel */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            ref={panelRef}
-            id="menu-panel"
-            className="menu__panel"
-            role="dialog"
-            aria-modal="false"
-            aria-label="Quick actions"
-            initial={{ opacity: 0, y: 0, scale: 0 }}
-            animate={{ opacity: 1, y: -5, scale: 1 }}
-            exit={{ opacity: 0, y: 0, scale: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-          >
-            {/* Theme */}
-            <section className="menu__section">
-              {/* Title */}
-              <h2 className="menu__section-title">Theme:</h2>
 
-              {/* Options */}
-              <div className="menu__theme-options">
-                {themeOptions.map((option) => {
-                  const Icon = option.icon;
-                  const isActive = currentTheme === option.id;
+      {isOpen && (
+        <div
+          ref={panelRef}
+          id="menu-panel"
+          className="menu__container"
+          role="region"
+          aria-modal="false"
+          aria-label="Quick actions"
+        >
+          {/* Theme Section */}
+          <section className="menu__section menu__section--theme">
+            {/* Theme Title */}
+            <h2 className="menu__section--title">Theme:</h2>
 
-                  return (
-                    // Theme button
-                    <motion.button
-                      key={option.id}
-                      type="button"
-                      className="menu__theme-btn"
-                      aria-label={`Switch to ${option.id} theme`}
-                      aria-pressed={isActive}
-                      onClick={() => switchTheme(option.id)}
-                      onHoverStart={() => setHoveredTheme(option.id)}
-                      onHoverEnd={() => setHoveredTheme(null)}
-                      whileHover={{ y: -1 }}
-                      whileTap={{ scale: 0.98 }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 380,
-                        damping: 28,
-                      }}
-                      animate={{
-                        color: isActive ? "var(--white)" : "var(--gray-700)",
-                      }}
+            {/* Theme Options */}
+            <div className="theme__container">
+              {themeOptions.map((option) => {
+                const Icon = option.icon;
+                const isActive = currentTheme === option.id;
+
+                return (
+                  // Theme button
+                  <button
+                    key={option.id}
+                    type="button"
+                    className={`theme__btn ${isActive ? "active" : ""} ${option.label.toLowerCase().trim()}`}
+                    aria-label={`Switch to ${option.id} theme`}
+                    aria-pressed={isActive}
+                    onClick={() => switchTheme(option.id)}
+                  >
+                    {/* theme icon */}
+                    <div
+                      className={`theme__icon-wrapper ${option.label.toLowerCase().trim()}`}
                     >
-                      {hoveredTheme === option.id && !isActive && (
-                        <motion.span
-                          layoutId="menu-theme-hover-indicator"
-                          className="menu__theme-hover-indicator"
-                          transition={{
-                            type: "spring",
-                            stiffness: 420,
-                            damping: 34,
-                          }}
-                        />
-                      )}
-                      {isActive && (
-                        <motion.span
-                          layoutId="menu-theme-active-indicator"
-                          className="menu__theme-active-indicator"
-                          transition={{
-                            type: "spring",
-                            stiffness: 420,
-                            damping: 32,
-                          }}
-                        />
-                      )}
                       <Icon
-                        className={`${isActive ? "active" : ""}`}
-                        size={16}
+                        className="theme__icon"
                         aria-hidden="true"
+                        role="img"
                       />
-                      <span className="menu__theme-label">{option.label}</span>
-                    </motion.button>
-                  );
-                })}
-              </div>
-            </section>
+                    </div>
+                    {/*  theme label */}
+                    <span
+                      className={`theme__label ${option.label.toLowerCase().trim()}`}
+                    >
+                      {option.label}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </section>
 
-            {/* Contact & Share */}
-            <section className="menu__section">
-              {/* Title */}
-              <h2 className="menu__section-title">Contact & Share:</h2>
+          {/* Links & Share */}
+          <section className="menu__section menu__section--links">
+            {/* Links & Share Title */}
+            <h2 className="menu__section--title">Links & Share:</h2>
 
-              {/* Links */}
-              <div className="menu__links">
-                {/* Social Links Link */}
-                <ConnectLinks
-                  renderTrigger={({ open }) => (
+            {/* Links & Share container */}
+            <ul className="links__container">
+              {/* Social Links */}
+              <ConnectLinks
+                renderTrigger={({ open }) => (
+                  <li
+                    className="link__item"
+                    aria-label="Open social links menu"
+                  >
                     <button
                       type="button"
-                      className="menu__link-btn menu__link-btn--social"
+                      className="link__option link__option--social"
                       {...getQuickActionProps("social", open)}
                     >
-                      {renderQuickActionIndicator("social")}
-                      <RxPerson size={16} aria-hidden="true" />
-                      <span className="menu__link-text">Social Links</span>
+                      <div className="link__icon--wrapper">
+                        <HiLink aria-hidden="true" role="img" />
+                      </div>
+                      <span className="link__label link__label--social">
+                        Social Links
+                      </span>
                     </button>
-                  )}
-                />
+                  </li>
+                )}
+              />
 
-                {/* Share Portfolio Link */}
-                <SharePortfolio
-                  renderTrigger={({ open }) => (
+              {/* Share Portfolio */}
+              <SharePortfolio
+                renderTrigger={({ open }) => (
+                  <li
+                    className="link__item"
+                    aria-label="Open share portfolio menu"
+                  >
                     <button
                       type="button"
-                      className="menu__link-btn menu__link-btn--share"
+                      className="link__option link__option--share"
                       {...getQuickActionProps("share", open)}
                     >
-                      {renderQuickActionIndicator("share")}
-                      <PiShareFatLight size={16} aria-hidden="true" />
-                      <span className="menu__link-text">Share Portfolio</span>
+                      <div className="link__icon--wrapper">
+                        <HiMiniQrCode aria-hidden="true" role="img" />
+                      </div>
+                      <span className="link__label link__label--share">
+                        Share Portfolio
+                      </span>
                     </button>
-                  )}
-                />
-
-                {/* Contact Link */}
-                <Link
-                  href="/contact"
-                  className="menu__link-btn menu__link-btn--contact"
-                  {...getQuickActionProps("contact", () => setIsOpen(false))}
-                >
-                  {renderQuickActionIndicator("contact")}
-                  <HiOutlineChatBubbleLeftRight size={16} aria-hidden="true" />
-                  <span className="menu__link-text">Contact Me</span>
-                </Link>
-              </div>
-            </section>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                  </li>
+                )}
+              />
+            </ul>
+          </section>
+        </div>
+      )}
     </div>
   );
 }

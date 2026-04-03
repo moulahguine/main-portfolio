@@ -2,8 +2,8 @@ import { IMAGE_ASSETS } from "@/assets/images";
 import { VIDEO_ASSETS } from "@/assets/video";
 
 export const IMAGEKIT_MEDIA = {
-  header: {
-    logo: "https://ik.imagekit.io/moulahguine/myPortfolio/portfolioLogo/Logo?updatedAt=1774776747962",
+  logo: {
+    logo: "https://ik.imagekit.io/moulahguine/myPortfolio/portfolioLogo/logo",
   },
   hero: {
     profilePicture:
@@ -22,7 +22,7 @@ export const IMAGEKIT_MEDIA = {
 };
 
 export const LOCAL_MEDIA = {
-  header: {
+  logo: {
     logo: IMAGE_ASSETS.profileLogo.profileLogo,
   },
   hero: {

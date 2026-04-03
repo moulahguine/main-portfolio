@@ -74,7 +74,7 @@ export default function Navigation({ className }) {
                 aria-current={isActive ? "page" : undefined}
               >
                 <span className="nav__icon">
-                  <Icon aria-hidden="true" />
+                  <Icon aria-hidden="true" role="img" />
                 </span>
                 <span className="nav__label">{item.label}</span>
               </Link>

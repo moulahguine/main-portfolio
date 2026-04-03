@@ -30,11 +30,11 @@ function BlogCard({ blog }) {
           {/* Date and read time */}
           <div className="blog-card__info">
             <span className="blog-card__date">
-              <FiCalendar size={14} aria-hidden="true" />
+              <FiCalendar size={14} aria-hidden="true" role="img" />
               {publishDate}
             </span>
             <span className="blog-card__read-time">
-              <FiClock size={14} aria-hidden="true" />
+              <FiClock size={14} aria-hidden="true" role="img" />
               {readTime}
             </span>
           </div>

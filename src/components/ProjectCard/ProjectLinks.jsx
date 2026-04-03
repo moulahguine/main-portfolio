@@ -19,7 +19,7 @@ export default function ProjectLinks({ demoLink, githubLink }) {
         aria-label="View Live Demo"
         title="🔗 Live Demo"
       >
-        <FiExternalLink size={20} />
+        <FiExternalLink size={20} role="img" aria-hidden="true" />
         <span>Demo</span>
       </button>
 
@@ -29,7 +29,7 @@ export default function ProjectLinks({ demoLink, githubLink }) {
         aria-label="View on GitHub"
         title="💻 GitHub Repo"
       >
-        <FaGithub size={20} />
+        <FaGithub size={20} role="img" aria-hidden="true" />
         <span>source</span>
       </button>
     </div>

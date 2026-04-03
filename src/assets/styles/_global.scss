@@ -68,6 +68,25 @@ a {
   color: inherit;
 }
 
+// Skip link
+.skip-link {
+  position: absolute;
+  top: $space-12;
+  left: $space-12;
+  z-index: $z-modal;
+  padding: $space-8 $space-12;
+  border-radius: $radius-md;
+  background-color: var(--gray-900);
+  color: var(--white);
+  transform: translateY(-180%);
+  transition: transform 0.2s ease-in-out;
+
+  &:focus,
+  &:focus-visible {
+    transform: translateY(0);
+  }
+}
+
 // Address
 address {
   font-style: normal;
