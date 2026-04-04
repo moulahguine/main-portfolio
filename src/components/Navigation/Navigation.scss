@@ -7,7 +7,7 @@
   padding: $space-4;
 
   // list
-  .nav__list {
+  .nav__lists {
     @include flex-between;
     gap: clamp($space-4, 1vw, $space-8);
     height: 100%;
@@ -15,31 +15,6 @@
     // item
     .nav__item {
       @include flex-center;
-      border-radius: $radius-xl;
-      overflow: hidden;
-
-      @media (max-width: $breakpoint-md) {
-        &:nth-child(3) {
-          .nav__link {
-            .nav__label {
-              letter-spacing: -0.5px;
-            }
-          }
-        }
-        &:nth-child(2) {
-          .nav__link {
-            &.active {
-              .nav__icon {
-                svg {
-                  fill: var(--gray-900);
-                  stroke: var(--gray-900);
-                  stroke-width: 1px;
-                }
-              }
-            }
-          }
-        }
-      }
 
       // link
       .nav__link {
@@ -47,37 +22,42 @@
         color: var(--gray-600);
         padding: clamp($space-4, 1vw, $space-8) clamp($space-8, 1vw, $space-12);
         transition: all 0.3s ease-in-out;
+        border-radius: $radius-xl;
+        overflow: hidden;
 
         @media (max-width: $breakpoint-md) {
           @include flex-column;
           align-items: center;
-          width: 65px;
+          width: 70px;
         }
 
-        .nav__icon {
+        // icon wrapper
+        .nav__icon--wrapper {
           display: none;
           width: fit-content;
           height: 20px;
 
+          // icon
+          svg {
+            color: inherit;
+            font-size: $font-size-16;
+          }
+
+          // show icons on mobile
           @media (max-width: $breakpoint-md) {
             display: block;
-
-            svg {
-              color: inherit;
-              font-size: $font-size-14;
-            }
           }
         }
 
         .nav__label {
-          padding: 2px $space-8;
+          color: inherit;
+          padding: $space-4 $space-8;
           font-size: $font-size-16;
           font-weight: $fw-medium;
-          color: inherit;
 
           @media (max-width: $breakpoint-md) {
             padding: 0;
-            font-size: $font-size-12;
+            font-size: $font-size-14;
           }
         }
 
@@ -93,6 +73,7 @@
           }
         }
 
+        // active and focus styles for non-active links
         &:active:not(.active),
         &:focus-visible:not(.active) {
           color: var(--gray-900);
@@ -102,6 +83,8 @@
             transparent
           );
         }
+
+        @include focus-visible;
 
         // active
         &.active {
@@ -129,11 +112,35 @@
             );
           }
 
-          .nav__icon {
+          .nav__icon--wrapper {
             svg {
-              scale: 1.3;
+              scale: 1.4;
               fill: var(--gray-900);
               stroke: var(--gray-300);
+            }
+          }
+        }
+      }
+
+      // mobile specific styles for the 2nd and 3rd nav items
+      @media (max-width: $breakpoint-md) {
+        &:nth-child(3) {
+          .nav__link {
+            .nav__label {
+              letter-spacing: -0.5px;
+            }
+          }
+        }
+        &:nth-child(2) {
+          .nav__link {
+            &.active {
+              .nav__icon--wrapper {
+                svg {
+                  fill: var(--gray-900);
+                  stroke: var(--gray-900);
+                  stroke-width: 1px;
+                }
+              }
             }
           }
         }

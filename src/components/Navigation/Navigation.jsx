@@ -1,5 +1,6 @@
 "use client";
 
+// hooks
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -54,18 +55,18 @@ function isActivePath(current, target) {
   return current === target || current.startsWith(target + "/");
 }
 
-export default function Navigation({ className }) {
+export default function Navigation({ className = "" }) {
   // Get the current pathname
   const pathname = normalizePath(usePathname());
 
   return (
-    <nav className={`nav ${className}`} aria-label="Primary navigation">
-      <ul className="nav__list">
+    <nav className={`nav ${className}`}>
+      <ul className="nav__lists">
         {NAVIGATION_ITEMS.map((item) => {
           const itemPath = normalizePath(item.path);
           const isActive = isActivePath(pathname, itemPath);
-
           const Icon = item.icon;
+
           return (
             <li key={item.id} className="nav__item">
               <Link
@@ -73,7 +74,7 @@ export default function Navigation({ className }) {
                 className={`nav__link ${isActive ? "active" : ""}`}
                 aria-current={isActive ? "page" : undefined}
               >
-                <span className="nav__icon">
+                <span className="nav__icon--wrapper">
                   <Icon aria-hidden="true" role="img" />
                 </span>
                 <span className="nav__label">{item.label}</span>

@@ -1,12 +1,12 @@
 @use "../../assets/styles" as *;
 
-.social-links-grid {
+.list__social-links {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   gap: clamp($space-12, 1vw, $space-16);
   padding: clamp($space-12, 1vw, $space-16);
 
-  .social-link-item {
+  .list__social-link-item {
     @include flex-column;
     align-items: center;
     gap: clamp($space-4, 1vw, $space-8);
@@ -16,6 +16,7 @@
     border: 1px solid var(--gray-300);
     cursor: pointer;
     transition: all 0.2s ease;
+    background-color: red;
 
     @media (hover: hover) {
       &:hover {

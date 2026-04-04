@@ -1,11 +1,4 @@
-import {
-  FaWhatsapp,
-  FaInstagram,
-  FaTelegram,
-  FaGithub,
-  FaMedium,
-  FaXTwitter,
-} from "react-icons/fa6";
+import { FaInstagram, FaGithub, FaMedium, FaXTwitter } from "react-icons/fa6";
 import { SiUpwork } from "react-icons/si";
 import { SlSocialLinkedin } from "react-icons/sl";
 
@@ -42,21 +35,9 @@ const socialLinks = [
     color: "#000000",
   },
   {
-    icon: FaWhatsapp,
-    label: "WhatsApp",
-    href: "https://wa.me/5548826567",
-    color: "#25D366",
-  },
-  {
-    icon: FaTelegram,
-    label: "Telegram",
-    href: "https://t.me/moulahguine",
-    color: "#0088CC",
-  },
-  {
     icon: FaMedium,
     label: "Medium",
-    href: "https://medium.com/@moulahguine",
+    href: "https://medium.com/@mohamedoulahguine",
     color: "#000000",
   },
 ];

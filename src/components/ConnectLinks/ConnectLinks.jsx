@@ -1,9 +1,11 @@
+// nextjs client components
+import Link from "next/link";
+
 // Components
 import { ModalTrigger } from "@/components";
 // Data
 import socialLinksData from "@/data/socialLinksData";
-// Icons
-import { RxPerson } from "react-icons/rx";
+
 // Styles
 import "./ConnectLinks.scss";
 
@@ -14,53 +16,40 @@ export default function ConnectLinks({ renderTrigger }) {
     <ModalTrigger
       title="Social Links"
       size="small"
-      renderTrigger={
-        renderTrigger ??
-        (({ open }) => (
-          // Trigger button
-          <button
-            className="social-trigger-btn"
-            onClick={open}
-            aria-label="Open social links"
-            type="button"
-            title="Open social links"
-          >
-            {/* Trigger icon */}
-            <span className="social__icon" aria-hidden="true">
-              <RxPerson size={18} aria-hidden="true" role="img" />
-            </span>
-          </button>
-        ))
-      }
+      renderTrigger={renderTrigger}
     >
-      {/* Modal content */}
-      <div>
-        {/* Social links grid */}
-        <ul className="social-links-grid" aria-label="Social links">
-          {socialLinksData.map((social) => {
-            const Icon = social.icon;
-            // Social link item
-            return (
-              <li key={social.label}>
-                <a
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-link-item"
-                  aria-label={`${social.label} (opens in new tab)`}
-                  title={social.label}
-                  style={{ "--hover-color": social.color }}
+      {/* Social links grid */}
+      <ul className="list__social-links" role="list">
+        {socialLinksData.map(({ icon: Icon, label, href, color }) => {
+          // Social link item
+          return (
+            <li key={label} className="list__social-link-item" role="listItem">
+              {/* Social link */}
+              <Link
+                href={href}
+                title={label}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link-item"
+                aria-label={`Visit ${label}`}
+                style={{ "--hover-color": color }}
+              >
+                {/* Social icon */}
+                <span
+                  className="social-link__icon-wrapper"
+                  aria-hidden="true"
+                  role="img"
                 >
-                  <span className="social-link-icon">
-                    <Icon size={22} aria-hidden="true" role="img" />
-                  </span>
-                  <span className="social-link-label">{social.label}</span>
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+                  <Icon />
+                </span>
+
+                {/* Social label */}
+                <span className="social-link__label">{label}</span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
     </ModalTrigger>
   );
 }

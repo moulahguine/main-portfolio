@@ -1,10 +1,9 @@
 "use client";
 
 // hooks
-import { useEffect, useState } from "react";
-
-// motion
-import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { useMediaQuery } from "react-responsive";
+import { motion, useScroll, useMotionValueEvent } from "motion/react";
+import { useState } from "react";
 
 // components
 import {
@@ -19,43 +18,18 @@ import {
 import "./Header.scss";
 
 export default function Header() {
+  const isMobile = useMediaQuery({ query: "(max-width: 778px)" });
+  const [hidden, setHidden] = useState(false);
   const { scrollY } = useScroll();
-  const [isMobile, setIsMobile] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 768px)");
-
-    const updateIsMobile = (event) => {
-      setIsMobile(event.matches);
-      if (!event.matches) {
-        setIsHidden(false);
-      }
-    };
-
-    setIsMobile(mediaQuery.matches);
-    mediaQuery.addEventListener("change", updateIsMobile);
-
-    return () => mediaQuery.removeEventListener("change", updateIsMobile);
-  }, []);
-
-  useMotionValueEvent(scrollY, "change", (current) => {
-    if (!isMobile) return;
-
-    const previous = scrollY.getPrevious() ?? 0;
-    const goingDown = current > previous;
-
-    if (current < 12) {
-      setIsHidden(false);
-      return;
+  // hide on scroll down, show on scroll up
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious();
+    if (latest > previous && latest > 50 && isMobile) {
+      setHidden(true);
+    } else {
+      setHidden(false);
     }
-
-    if (goingDown) {
-      setIsHidden(true);
-      return;
-    }
-
-    setIsHidden(false);
   });
 
   return (
@@ -63,8 +37,12 @@ export default function Header() {
       {/* desktop header */}
       <motion.header
         className="header"
-        animate={isMobile ? { y: isHidden ? "-100%" : 0 } : { y: 0 }}
-        transition={{ type: "spring", stiffness: 420, damping: 38 }}
+        variants={{
+          visible: { y: 0 },
+          hidden: { y: -100 },
+        }}
+        animate={hidden ? "hidden" : "visible"}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         {/* container */}
         <div className="container">
@@ -75,22 +53,38 @@ export default function Header() {
             linkClassName="header__logo"
             logoClassName="header__logo-img"
             href="/"
-            aria-label="Home"
-            alt="logo"
+            aria-label="Home logo"
+            alt="website logo with the initials M and O"
             width={50}
             height={50}
             priority
           />
+
           {/* navigation */}
-          <Navigation className="nav-desktop" />
+          {!isMobile && <Navigation className="nav__desktop" />}
+
           {/* menu */}
           <Menu />
         </div>
       </motion.header>
-      {/* mobile header */}
-      <div className="mobile-nav">
-        <Navigation />
-      </div>
+
+      {/* mobile navigation */}
+      {isMobile && (
+        <motion.div
+          id="mobile-nav"
+          className="nav__mobile--wrapper"
+          variants={{
+            visible: { y: 0 },
+            hidden: { y: 100 },
+          }}
+          animate={hidden ? "hidden" : "visible"}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          aria-label="Mobile navigation"
+          aria-hidden={!isMobile}
+        >
+          <Navigation className="nav__mobile" />
+        </motion.div>
+      )}
     </>
   );
 }

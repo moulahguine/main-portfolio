@@ -14,7 +14,8 @@
     "react-dom": "^19.1.1",
     "react-icons": "^5.5.0",
     "react-leaflet": "^5.0.0",
-    "react-remove-scroll": "^2.7.2"
+    "react-remove-scroll": "^2.7.2",
+    "react-responsive": "^10.0.1"
   },
   "eslintConfig": {
     "extends": [

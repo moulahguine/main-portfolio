@@ -21,18 +21,28 @@ import { AnimatePresence, motion } from "motion/react";
 // styles
 import "./Menu.scss";
 
-// theme options
-
+// theme data
 const themeOptions = [
   { id: "dark", label: "Dark", icon: HiOutlineMoon },
   { id: "light", label: "Light", icon: HiOutlineSun },
 ];
 
+// quick action item component
+function QuickActionItem({ className, icon: Icon, label, onClick }) {
+  return (
+    <button type="button" className={className} onClick={onClick}>
+      <div className="link__icon--wrapper">
+        <Icon aria-hidden="true" role="img" />
+      </div>
+      <span className="link__label">{label}</span>
+    </button>
+  );
+}
+
 // Menu component
 export default function Menu() {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const [activeQuickAction, setActiveQuickAction] = useState(null);
   const { theme, setTheme } = useTheme();
 
   const panelRef = useRef(null);
@@ -91,19 +101,6 @@ export default function Menu() {
     setTheme(newTheme);
   };
 
-  // set quick action active
-  const setQuickActionActive = (key) => setActiveQuickAction(key);
-
-  // get quick action props
-  const getQuickActionProps = (key, action) => ({
-    onPointerEnter: () => setQuickActionActive(key),
-    onFocus: () => setQuickActionActive(key),
-    onClick: () => {
-      setQuickActionActive(key);
-      action?.();
-    },
-  });
-
   // render menu
   return (
     <div className="menu">
@@ -133,115 +130,113 @@ export default function Menu() {
       </button>
 
       {/* Panel */}
+      <AnimatePresence>
+        {isOpen && (
+          <div
+            key="menu-panel"
+            ref={panelRef}
+            id="menu-panel"
+            className="menu__container"
+            role="region"
+            aria-modal="false"
+            aria-label="Quick actions"
+          >
+            {/* Theme Section */}
+            <motion.section
+              key="theme-section"
+              className="menu__section menu__section--theme"
+              initial={{ opacity: 0, y: -2 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -2, transition: { delay: 0.4 } }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              {/* Theme Title */}
+              <h2 className="menu__section--title">Theme:</h2>
 
-      {isOpen && (
-        <div
-          ref={panelRef}
-          id="menu-panel"
-          className="menu__container"
-          role="region"
-          aria-modal="false"
-          aria-label="Quick actions"
-        >
-          {/* Theme Section */}
-          <section className="menu__section menu__section--theme">
-            {/* Theme Title */}
-            <h2 className="menu__section--title">Theme:</h2>
+              {/* Theme Options */}
+              <div className="theme__container">
+                {themeOptions.map((option) => {
+                  const Icon = option.icon;
+                  const isActive = currentTheme === option.id;
 
-            {/* Theme Options */}
-            <div className="theme__container">
-              {themeOptions.map((option) => {
-                const Icon = option.icon;
-                const isActive = currentTheme === option.id;
-
-                return (
-                  // Theme button
-                  <button
-                    key={option.id}
-                    type="button"
-                    className={`theme__btn ${isActive ? "active" : ""} ${option.label.toLowerCase().trim()}`}
-                    aria-label={`Switch to ${option.id} theme`}
-                    aria-pressed={isActive}
-                    onClick={() => switchTheme(option.id)}
-                  >
-                    {/* theme icon */}
-                    <div
-                      className={`theme__icon-wrapper ${option.label.toLowerCase().trim()}`}
+                  return (
+                    // Theme button
+                    <button
+                      key={option.id}
+                      type="button"
+                      className={`theme__btn ${isActive ? "active" : ""} ${option.label.toLowerCase().trim()}`}
+                      aria-label={`Switch to ${option.id} theme`}
+                      aria-pressed={isActive}
+                      onClick={() => switchTheme(option.id)}
                     >
-                      <Icon
-                        className="theme__icon"
-                        aria-hidden="true"
-                        role="img"
+                      {/* theme icon */}
+                      <div
+                        className={`theme__icon-wrapper ${option.label.toLowerCase().trim()}`}
+                      >
+                        <Icon
+                          className="theme__icon"
+                          aria-hidden="true"
+                          role="img"
+                        />
+                      </div>
+                      {/*  theme label */}
+                      <span
+                        className={`theme__label ${option.label.toLowerCase().trim()}`}
+                      >
+                        {option.label}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </motion.section>
+
+            {/* Links & Share */}
+            <motion.section
+              key="links-section"
+              className="menu__section menu__section--links"
+              initial={{ opacity: 0, y: -100 }}
+              animate={{ opacity: 1, y: 0, transition: { delay: 0.3 } }}
+              exit={{ opacity: 0, y: -100 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+            >
+              {/* Links & Share Title */}
+              <h2 className="menu__section--title">Links & Share:</h2>
+
+              {/* Links & Share container */}
+              <ul className="links__container">
+                {/* Social Links */}
+                <ConnectLinks
+                  renderTrigger={({ open }) => (
+                    <li className="link__item">
+                      <QuickActionItem
+                        className="link__option link__option--social"
+                        icon={HiLink}
+                        label="Social Links"
+                        onClick={open}
                       />
-                    </div>
-                    {/*  theme label */}
-                    <span
-                      className={`theme__label ${option.label.toLowerCase().trim()}`}
-                    >
-                      {option.label}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </section>
+                    </li>
+                  )}
+                />
 
-          {/* Links & Share */}
-          <section className="menu__section menu__section--links">
-            {/* Links & Share Title */}
-            <h2 className="menu__section--title">Links & Share:</h2>
-
-            {/* Links & Share container */}
-            <ul className="links__container">
-              {/* Social Links */}
-              <ConnectLinks
-                renderTrigger={({ open }) => (
-                  <li
-                    className="link__item"
-                    aria-label="Open social links menu"
-                  >
-                    <button
-                      type="button"
-                      className="link__option link__option--social"
-                      {...getQuickActionProps("social", open)}
-                    >
-                      <div className="link__icon--wrapper">
-                        <HiLink aria-hidden="true" role="img" />
-                      </div>
-                      <span className="link__label link__label--social">
-                        Social Links
-                      </span>
-                    </button>
-                  </li>
-                )}
-              />
-
-              {/* Share Portfolio */}
-              <SharePortfolio
-                renderTrigger={({ open }) => (
-                  <li
-                    className="link__item"
-                    aria-label="Open share portfolio menu"
-                  >
-                    <button
-                      type="button"
-                      className="link__option link__option--share"
-                      {...getQuickActionProps("share", open)}
-                    >
-                      <div className="link__icon--wrapper">
-                        <HiMiniQrCode aria-hidden="true" role="img" />
-                      </div>
-                      <span className="link__label link__label--share">
-                        Share Portfolio
-                      </span>
-                    </button>
-                  </li>
-                )}
-              />
-            </ul>
-          </section>
-        </div>
-      )}
+                {/* Share Portfolio */}
+                <SharePortfolio
+                  renderTrigger={({ open }) => (
+                    <li className="link__item">
+                      <QuickActionItem
+                        className="link__option link__option--share"
+                        icon={HiMiniQrCode}
+                        label="Share Portfolio"
+                        onClick={open}
+                      />
+                    </li>
+                  )}
+                />
+              </ul>
+            </motion.section>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
