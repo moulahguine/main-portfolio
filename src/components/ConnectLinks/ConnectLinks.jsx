@@ -3,6 +3,7 @@ import Link from "next/link";
 
 // Components
 import { ModalTrigger } from "@/components";
+
 // Data
 import socialLinksData from "@/data/socialLinksData";
 
@@ -13,11 +14,7 @@ import "./ConnectLinks.scss";
 export default function ConnectLinks({ renderTrigger }) {
   return (
     // Modal Trigger
-    <ModalTrigger
-      title="Social Links"
-      size="small"
-      renderTrigger={renderTrigger}
-    >
+    <ModalTrigger title="Find me on" size="small" renderTrigger={renderTrigger}>
       {/* Social links grid */}
       <ul className="list__social-links" role="list">
         {socialLinksData.map(({ icon: Icon, label, href, color }) => {
@@ -36,7 +33,7 @@ export default function ConnectLinks({ renderTrigger }) {
               >
                 {/* Social icon */}
                 <span
-                  className="social-link__icon-wrapper"
+                  className="social-link__icon--wrapper"
                   aria-hidden="true"
                   role="img"
                 >

@@ -11,6 +11,17 @@
   font-family: inherit;
 }
 
+button,
+a,
+input,
+textarea,
+select,
+[role="button"],
+[role="menuitem"],
+[role="tab"] {
+  @include focus-visible;
+}
+
 // HTML
 html {
   scroll-behavior: smooth;

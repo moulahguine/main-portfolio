@@ -26,7 +26,6 @@ $menu-transition: 0.3s ease-in-out;
     transition:
       background-color $menu-transition,
       backdrop-filter $menu-transition;
-    @include focus-visible;
 
     // line styles
     .menu__trigger-line {
@@ -153,7 +152,6 @@ $menu-transition: 0.3s ease-in-out;
         // theme switcher button styles
         .theme__btn {
           @include flex-center;
-          @include focus-visible;
           width: 50%;
           gap: 1px;
           padding: $space-8;
@@ -232,14 +230,13 @@ $menu-transition: 0.3s ease-in-out;
 
         .link__item > .link__option {
           @include flex-center;
+          @include ripple-effect(var(--gray-500));
           justify-content: start;
           width: 100%;
           gap: $space-4;
           padding: $space-12;
           border-radius: $radius-lg;
           background-color: transparent;
-          overflow: hidden;
-          position: relative;
           transition: all 0.3s ease-in-out;
 
           .link__label {
@@ -275,34 +272,8 @@ $menu-transition: 0.3s ease-in-out;
               background-color: var(--gray-300);
             }
           }
-
-          &:active::after {
-            content: "";
-            position: absolute;
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            background-color: var(--gray-800);
-            opacity: 0.5;
-            border-radius: 50%;
-            animation: ripple 1s ease-out;
-          }
-
-          &:focus {
-            outline: 2px var(--gray-400) solid;
-            scale: 0.95;
-          }
         }
       }
     }
-  }
-}
-
-@keyframes ripple {
-  100% {
-    transform: translate(-50%, -50%) scale(2);
-    opacity: 0;
   }
 }

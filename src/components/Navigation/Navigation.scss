@@ -84,8 +84,6 @@
           );
         }
 
-        @include focus-visible;
-
         // active
         &.active {
           transition: all 0.2s ease-in-out;

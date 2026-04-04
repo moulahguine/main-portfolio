@@ -1,11 +1,16 @@
-import { FaInstagram, FaGithub, FaMedium, FaXTwitter } from "react-icons/fa6";
-import { SiUpwork } from "react-icons/si";
-import { SlSocialLinkedin } from "react-icons/sl";
+import {
+  FaInstagram,
+  FaGithub,
+  FaMedium,
+  FaXTwitter,
+  FaLinkedinIn,
+  FaUpwork,
+} from "react-icons/fa6";
 
 // Social media links
 const socialLinks = [
   {
-    icon: SlSocialLinkedin,
+    icon: FaLinkedinIn,
     label: "LinkedIn",
     href: "https://linkedin.com/in/moulahguine",
     color: "#0077B5",
@@ -14,10 +19,10 @@ const socialLinks = [
     icon: FaGithub,
     label: "GitHub",
     href: "https://github.com/moulahguine",
-    color: "#333",
+    color: "#000000",
   },
   {
-    icon: SiUpwork,
+    icon: FaUpwork,
     label: "upwork",
     href: "https://upwork.com/freelancers/moulahguine",
     color: "#4fab4a",
