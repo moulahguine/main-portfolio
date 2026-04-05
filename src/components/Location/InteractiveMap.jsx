@@ -33,19 +33,25 @@ function InteractiveMap() {
         color: "#f3f3f4",
         fillColor: "#ffffff",
         fillOpacity: 0.95,
-        weight: 2,
+        weight: 1,
         opacity: 1,
       }
     : {
-        color: "#515256",
-        fillColor: "#6f7074",
+        color: "#060606",
+        fillColor: "#181818",
         fillOpacity: 0.9,
-        weight: 2,
+        weight: 1,
         opacity: 0.95,
       };
 
   return (
-    <div className="interactive-map-container">
+    <div
+      className={
+        isDark
+          ? "interactive-map-container interactive-map-container--dark"
+          : "interactive-map-container interactive-map-container--light"
+      }
+    >
       <MapContainer
         center={mapCenter}
         zoom={13}
@@ -66,7 +72,7 @@ function InteractiveMap() {
         />
 
         {/* Location Dots for Istanbul and Morocco */}
-        <CircleMarker center={istanbul} radius={6} pathOptions={markerStyle} />
+        <CircleMarker center={istanbul} radius={4} pathOptions={markerStyle} />
       </MapContainer>
     </div>
   );
