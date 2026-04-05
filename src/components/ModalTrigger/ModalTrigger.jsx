@@ -7,6 +7,7 @@ export default function ModalTrigger({
   renderTrigger,
   children,
   onOpenChange,
+  style,
   ...modalProps
 }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +38,12 @@ export default function ModalTrigger({
         toggle,
         isOpen,
       })}
-      <Modal isOpen={isOpen} onClose={close} {...modalProps}>
+      <Modal
+        isOpen={isOpen}
+        onClose={close}
+        {...modalProps}
+        style={{ ...style }}
+      >
         {typeof children === "function"
           ? children({ open, close, toggle, isOpen })
           : children}

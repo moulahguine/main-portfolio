@@ -1,6 +1,5 @@
 "use client";
 
-// Components
 import {
   ModalTrigger,
   ImageViewer,
@@ -8,9 +7,6 @@ import {
   IMAGEKIT_MEDIA,
   LOCAL_MEDIA,
 } from "@/components";
-
-// Icons
-import { BsArrowsFullscreen } from "react-icons/bs";
 
 // Data URLs
 export default function HeroMedia({ classFigure, classImage }) {
@@ -21,30 +17,23 @@ export default function HeroMedia({ classFigure, classImage }) {
         size="medium"
         closeOnOverlayClick={true}
         allowPinchZoom
-        showHeader={true}
-        title="Profile picture"
+        showHeader={false}
+        showCloseButton={false}
+        style={{ borderRadius: "50%" }}
         renderTrigger={({ open }) => (
-          <figure
+          <button
             className={classFigure}
             onClick={open}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                open();
-              }
-            }}
-            tabIndex={0}
-            role="button"
-            aria-label="Open full-size portrait"
-            title="Open full-size portrait"
+            aria-label="View larger profile photo"
+            title="View larger profile photo"
           >
             {/* Profile picture */}
             <ImageWithFallback
               key={IMAGEKIT_MEDIA.hero.profilePicture}
-              className={classImage}
               src={IMAGEKIT_MEDIA.hero.profilePicture}
               fallback={LOCAL_MEDIA.hero.profilePicture}
-              alt={`profile picture`}
+              className={classImage}
+              alt="Profile photo of Mohamed Oulahguine"
               loading="eager"
               decoding="async"
               fill
@@ -52,23 +41,18 @@ export default function HeroMedia({ classFigure, classImage }) {
               quality={100}
               priority={true}
             />
-
-            {/* Fullscreen icon */}
-            <span className="hero__media-overlay">
-              <BsArrowsFullscreen aria-hidden="true" role="img" />
-            </span>
-            <figcaption className="sr-only">profile picture</figcaption>
-          </figure>
+          </button>
         )}
       >
         {/* Image Viewer */}
         <ImageViewer
           src={IMAGEKIT_MEDIA.hero.largeProfilePicture}
           fallback={LOCAL_MEDIA.hero.largeProfilePicture}
-          alt={`profile picture in full size portrait`}
+          alt="Large profile photo of Mohamed Oulahguine"
           fill={true}
           sizes="(max-width: 778px) calc(100vw - 12px), 70vmin"
           quality={100}
+          className="hero-section__media--image-viewer"
         />
       </ModalTrigger>
     </>

@@ -30,30 +30,28 @@
       height: 45px;
       flex-shrink: 0;
       border-radius: 50%;
-      background-image: url("https://ik.imagekit.io/moulahguine/myPortfolio/portfolioLogo/logo");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      background: url("https://ik.imagekit.io/moulahguine/myPortfolio/portfolioLogo/logo")
+        center / cover no-repeat;
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
+      filter: var(--theme-logo-filter, none);
 
       &-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        filter: var(--theme-logo-filter, none)
-          drop-shadow(0 0 1.5px var(--gray-900));
-        transition: all 0.3s ease-in-out;
-      }
-      &:active,
-      &:focus-visible {
-        .header__logo-img {
-          transform: scale(1.09);
-          filter: var(--theme-logo-filter, none)
-            drop-shadow(0 0 3px var(--gray-900));
-        }
+        display: none;
+        //   width: 100%;
+        //   height: 100%;
+        //   object-fit: cover;
+        //   filter: var(--theme-logo-filter, none)
+        //     drop-shadow(0 0 1.5px var(--gray-900));
+        //   transition: all 0.3s ease-in-out;
+        // }
+        // &:active,
+        // &:focus-visible {
+        //   .header__logo-img {
+        //     transform: scale(1.09);
+        //   }
       }
 
       @media (max-width: $breakpoint-md) {

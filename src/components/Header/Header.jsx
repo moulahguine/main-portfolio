@@ -26,7 +26,7 @@ export default function Header() {
   // hide on scroll down, show on scroll up
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
-    if (latest > previous && latest > 50 && isMobile) {
+    if (latest > previous && latest > 10 && isMobile) {
       setHidden(true);
     } else {
       setHidden(false);
@@ -54,8 +54,7 @@ export default function Header() {
             linkClassName="header__logo"
             logoClassName="header__logo-img"
             href="/"
-            aria-label="Home logo"
-            alt="website logo with the initials M and O"
+            alt=""
             width={50}
             height={50}
             priority

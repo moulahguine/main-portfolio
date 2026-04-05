@@ -62,8 +62,9 @@
 
       // Modal header title section
       &-title {
+        text-transform: capitalize;
         margin: 0;
-        font-size: clamp($font-size-12, 3vw, $font-size-18);
+        font-size: clamp($font-size-16, 3vw, $font-size-18);
         font-weight: $fw-bold;
         color: var(--gray-700);
       }
@@ -85,7 +86,7 @@
       width: 100%;
       padding: 0;
       background-color: var(--gray-200);
-      border-radius: inherit;
+      border-radius: $radius-lg;
       overflow: auto;
 
       @media (max-width: $breakpoint-md) {
@@ -113,7 +114,7 @@
         @include flex-center;
         width: 100%;
         min-height: 100%;
-        padding: var(--modal-viewer-padding);
+        padding: (--modal-viewer-padding);
 
         &__frame {
           @include flex-center;
@@ -128,15 +129,11 @@
           background-color: var(--gray-300);
           user-select: none;
           touch-action: manipulation;
+          width: 100%;
+          aspect-ratio: 1 / 1;
 
           @media (max-width: $breakpoint-md) {
             max-width: calc(100vw - #{$space-12});
-            // border-radius: $radius-md;
-          }
-
-          &--square {
-            width: 100%;
-            aspect-ratio: 1 / 1;
           }
 
           &--video {
@@ -148,7 +145,7 @@
           width: 100% !important;
           height: 100% !important;
           margin: 0;
-          border-radius: inherit;
+          border-radius: $radius-lg;
           object-position: center;
           user-select: none;
           -webkit-user-drag: none;
@@ -162,6 +159,7 @@
           &--video {
             object-fit: contain;
             display: block;
+            border-radius: $radius-lg;
           }
         }
       }
