@@ -1,0 +1,67 @@
+@use "../../assets/styles" as *;
+
+// Pulsing location marker (dot + 3 rings)
+.location-pulse.leaflet-div-icon {
+  background: transparent;
+  border: 0;
+}
+
+.location-pulse {
+  width: 18px;
+  height: 18px;
+  position: relative;
+  pointer-events: none;
+}
+
+.location-pulse__dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--black);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--white) 65%, transparent);
+}
+
+.location-pulse__ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0.2);
+  border: 2px solid color-mix(in srgb, var(--black) 55%, transparent);
+  opacity: 0;
+  animation: location-pulse-ring 1.8s ease-out infinite;
+}
+
+.location-pulse__ring--1 {
+  animation-delay: 0ms;
+}
+
+.location-pulse__ring--2 {
+  animation-delay: 600ms;
+  border-color: color-mix(in srgb, var(--black) 40%, transparent);
+}
+
+.location-pulse__ring--3 {
+  animation-delay: 1200ms;
+  border-color: color-mix(in srgb, var(--black) 28%, transparent);
+}
+
+@keyframes location-pulse-ring {
+  0% {
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 0.28;
+  }
+  70% {
+    opacity: 0.12;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.4);
+    opacity: 0;
+  }
+}

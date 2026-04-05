@@ -7,11 +7,11 @@ const DynamicMap = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="hero__mapLoading" aria-live="polite">
+      <div className="hero-section__map--wrapper-loading" aria-live="polite">
         loading map...
       </div>
     ),
-  }
+  },
 );
 
 export default function AsideInlineMap() {

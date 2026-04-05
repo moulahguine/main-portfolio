@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useMemo } from "react";
-import { MapContainer, TileLayer, CircleMarker } from "react-leaflet";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import { useTheme } from "next-themes";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import "./InteractiveMap.scss";
 
 // Fix for default markers in react-leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -28,21 +29,21 @@ function InteractiveMap() {
     ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
     : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
 
-  const markerStyle = isDark
-    ? {
-        color: "#f3f3f4",
-        fillColor: "#ffffff",
-        fillOpacity: 0.95,
-        weight: 1,
-        opacity: 1,
-      }
-    : {
-        color: "#060606",
-        fillColor: "#181818",
-        fillOpacity: 0.9,
-        weight: 1,
-        opacity: 0.95,
-      };
+  const pulseIcon = useMemo(
+    () =>
+      L.divIcon({
+        className: "location-pulse",
+        html: `
+          <span class="location-pulse__ring location-pulse__ring--1"></span>
+          <span class="location-pulse__ring location-pulse__ring--2"></span>
+          <span class="location-pulse__ring location-pulse__ring--3"></span>
+          <span class="location-pulse__dot"></span>
+        `,
+        iconSize: [18, 18],
+        iconAnchor: [9, 9],
+      }),
+    [],
+  );
 
   return (
     <div
@@ -71,8 +72,8 @@ function InteractiveMap() {
           maxZoom={63}
         />
 
-        {/* Location Dots for Istanbul and Morocco */}
-        <CircleMarker center={istanbul} radius={4} pathOptions={markerStyle} />
+        {/* Location pulse marker */}
+        <Marker position={istanbul} icon={pulseIcon} interactive={false} />
       </MapContainer>
     </div>
   );
