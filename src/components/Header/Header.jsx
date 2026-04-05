@@ -2,7 +2,7 @@
 
 // hooks
 import { useMediaQuery } from "react-responsive";
-import { motion, useScroll, useMotionValueEvent } from "motion/react";
+import { motion, useScroll, useMotionValueEvent, scale } from "motion/react";
 import { useState } from "react";
 
 // components
@@ -74,14 +74,40 @@ export default function Header() {
           <motion.div
             className="mobile__button-wrapper"
             variants={{
-              visible: { y: -65 },
-              hidden: { y: 0 },
+              visible: {
+                borderRadius: "",
+                width: "fit-content",
+                y: -65,
+              },
+              hidden: {
+                borderRadius: "30%",
+                width: "50px",
+                y: 0,
+              },
             }}
             animate={hidden ? "hidden" : "visible"}
+            whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
             aria-label="Mobile resume button"
           >
-            <ResumeBtn className="mobile__button--resume" />
+            <ResumeBtn
+              className="mobile__button--resume"
+              variants={{
+                visible: {
+                  scale: 1,
+                  x: 0,
+                  overflow: "visible",
+                },
+                hidden: {
+                  x: 15,
+                  scale: 1.5,
+                  overflow: "hidden",
+                },
+              }}
+              whileTap={{ scale: 0.92 }}
+              animate={hidden ? "hidden" : "visible"}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+            />
           </motion.div>
           <motion.div
             id="mobile-nav"

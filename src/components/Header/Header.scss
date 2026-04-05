@@ -97,6 +97,8 @@
   bottom: $space-12;
   right: $space-12;
   z-index: $z-dropdown;
+  overflow: hidden;
+  border-radius: 20%;
 
   @media (min-width: $breakpoint-md) {
     display: none;
