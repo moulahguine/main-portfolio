@@ -1,259 +1,215 @@
 @use "../../assets/styles" as *;
 
 // HERO SECTION
-.hero {
+.hero-section {
   @include section;
   position: relative;
   z-index: $z-base;
+  padding-bottom: calc($space-40 + $space-8);
 
-  // Container section
-  .container {
+  // hero section container
+  &__container {
     @include container;
-    border-radius: $radius-lg;
-    padding-top: 0;
+    padding: 0 !important;
+    background-color: transparent;
+    position: relative;
+  }
+
+  // Map section
+  &__map--wrapper {
+    width: 100%;
+    height: 300px;
+    background-color: var(--gray-100);
+    position: relative;
+    z-index: $z-elevated;
+    border-radius: $radius-lg $radius-lg 0 0;
     overflow: hidden;
 
-    // Map section
-    .hero__map {
+    @media (max-width: $breakpoint-md) {
+      // height: 230px;
+      border-radius: 0;
+    }
+
+    // Gradient overlay
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -15px;
+      left: 0;
       width: 100%;
-      height: 250px;
-      background-color: var(--gray-100);
+      height: 30%;
+      z-index: $z-above;
+      background: linear-gradient(to top, var(--white) 30px, transparent 100%);
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    // Interactive map container
+    .interactive-map-container {
+      width: 100%;
+      height: 100%;
       position: relative;
-      z-index: $z-elevated;
-      border-radius: $radius-lg $radius-lg 0 0;
+      z-index: $z-base;
 
-      @media (max-width: $breakpoint-md) {
-        height: clamp(250px, 30vw, 400px);
-        border-radius: 0;
+      // Leaflet container
+      .leaflet-container {
+        background: var(--gray-200);
       }
 
-      // Gradient overlay
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: -15px;
-        left: 0;
-        width: 100%;
-        height: 30%;
-        z-index: $z-above;
-        background: linear-gradient(
-          to top,
-          var(--white) 25px,
-          transparent 100%
-        );
-        border-radius: inherit;
-        pointer-events: none;
-      }
-
-      // Interactive map container
-      .interactive-map-container {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        z-index: $z-base;
-
-        // Leaflet container
-        .leaflet-container {
-          width: 100%;
-          height: 100%;
-          background: var(--gray-100);
-        }
-
-        // Leaflet control attribution
-        .leaflet-control-attribution {
-          display: none !important;
-        }
+      // Leaflet control attribution
+      .leaflet-control-attribution {
+        display: none !important;
       }
     }
 
-    // Map loading section
     .hero__mapLoading {
       @include flex-center;
       width: 100%;
       height: 100%;
-      background-color: var(--gray-50);
+      background-color: var(--gray-200);
       border-radius: $radius-lg;
-      color: var(--gray-600);
+      color: var(--gray-700);
       position: absolute;
       top: 0;
       left: 0;
       z-index: $z-above;
+      font-size: $font-size-20;
     }
+  }
 
-    // Profile section
-    .hero__profile {
-      @include flex-between;
-      gap: $space-8;
-      padding: $space-16;
+  &__profile--content {
+    @include flex-center;
+    width: fit-content;
+    justify-content: start;
+    position: relative;
+    left: $space-32;
+    z-index: $z-elevated;
 
-      @media (max-width: $breakpoint-md) {
-        flex-direction: column;
-        gap: $space-12;
-      }
-
-      // Profile content section
-      .hero__profile-content {
-        @include flex-between;
-        width: fit-content;
-        padding-left: $space-32;
-
-        @media (max-width: $breakpoint-md) {
-          flex-direction: column;
-          width: 100%;
-          padding-left: 0;
-          gap: $space-12;
-        }
-
-        // Media section
-        .hero__media {
-          --square-size: 10rem;
-          width: var(--square-size);
-          height: var(--square-size);
-          margin-top: -70px;
-          margin-left: $space-12;
-          border-radius: 50%;
-          overflow: hidden;
-          border: $space-4 solid var(--white);
-          position: relative;
-          z-index: $z-elevated;
-          cursor: pointer;
-          background-color: var(--gray-100);
-
-          @media (max-width: $breakpoint-md) {
-            --square-size: clamp(200px, 18vw, 300px);
-            margin-top: clamp(-65px, -10vw, -70px);
-          }
-
-          // Image section
-          .hero__image {
-            width: 100%;
-            height: 100%;
-          }
-
-          // Media overlay section
-          .hero__media-overlay {
-            @include flex-center;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            left: 0;
-            top: 0;
-            background-color: color-mix(
-              in srgb,
-              var(--gray-900) 20%,
-              transparent
-            );
-            opacity: 1;
-            opacity: 0;
-            transition: all 0.5s ease-in-out;
-
-            svg {
-              color: var(--gray-100);
-              transition: all 0.3s ease-in-out;
-              transition-delay: 0.3s;
-            }
-          }
-
-          // Media overlay hover
-          &:hover {
-            .hero__media-overlay {
-              opacity: 1;
-              svg {
-                scale: 1.2;
-              }
-            }
-          }
-
-          // User select none
-          user-select: none;
-          -webkit-user-drag: none;
-        }
-
-        // Hero info section
-        .hero__info {
-          @include flex-column;
-          gap: $space-4;
-          padding-left: $space-12;
-
-          @media (max-width: $breakpoint-md) {
-            gap: $space-8;
-          }
-
-          // Hero title section
-          .hero__title {
-            display: flex;
-            align-items: center;
-            gap: $space-4;
-            font-size: $font-size-24;
-            color: var(--gray-900);
-            text-wrap: nowrap;
-            margin-bottom: -$space-4;
-
-            // Verified badge section
-            .verified-badge {
-              width: $space-20;
-              height: $space-20;
-            }
-          }
-
-          // Hero role section
-          .hero__role {
-            font-size: calc($font-size-14 - 1px);
-            color: var(--gray-700);
-
-            span {
-              color: var(--gray-500);
-            }
-          }
-
-          // Hero location section
-          .hero__location {
-            display: flex;
-            align-items: center;
-            gap: $space-4;
-            font-size: $font-size-12;
-            color: var(--gray-600);
-            font-weight: $fw-medium;
-
-            .nationality {
-              color: var(--gray-500);
-            }
-
-            svg {
-              color: var(--gray-700);
-              font-size: clamp($font-size-12, 1.5vw, $font-size-14);
-            }
-          }
-
-          @media (max-width: $breakpoint-md) {
-            .hero__title {
-              justify-content: center;
-            }
-
-            .hero__role,
-            .hero__location {
-              text-align: center;
-            }
-          }
-        }
-      }
-
-      // Hero Resume Button
-      .resume-btn-container {
-        @include flex-center;
-
-        @media (max-width: $breakpoint-md) {
-          margin-left: $space-16;
-        }
-      }
-    }
-
-    // Media query for mobile devices
     @media (max-width: $breakpoint-md) {
-      height: 100%;
-      padding: 0;
-      padding-bottom: $space-40;
-      border-radius: 0;
+      flex-direction: column;
+      gap: $space-12;
+      width: 100%;
+      left: 0;
+    }
+  }
+
+  &__media--figure {
+    --square-size: 10rem;
+    width: var(--square-size);
+    height: var(--square-size);
+    margin-top: -70px;
+    margin-left: $space-12;
+    border-radius: 50%;
+    overflow: hidden;
+    border: $space-4 solid var(--white);
+    position: relative;
+    cursor: pointer;
+    background-color: var(--gray-200);
+
+    @media (max-width: $breakpoint-md) {
+      --square-size: clamp(200px, 18vw, 300px);
+      margin-top: clamp(-65px, -10vw, -70px);
+    }
+  }
+
+  &__media--image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__info {
+    @include flex-column;
+    padding-left: $space-12;
+
+    @media (max-width: $breakpoint-md) {
+      align-items: center;
+      gap: $space-4;
+    }
+  }
+
+  &__fullname {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+
+    &--text {
+      font-size: $font-size-24;
+      font-weight: $fw-bold;
+      color: var(--gray-900);
+      text-wrap: nowrap;
+    }
+
+    &--verified {
+      @include flex-center;
+      width: $space-32;
+      height: $space-32;
+
+      &-icon {
+        color: var(--gray-800);
+        font-size: clamp($font-size-18, 1.5vw, $font-size-20);
+      }
+    }
+  }
+
+  &__role {
+    width: fit-content;
+    font-size: $font-size-14;
+    color: var(--gray-800);
+  }
+
+  // Location section
+  &__location {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: $space-4;
+
+    &--icon {
+      @include flex-center;
+      height: $space-24;
+
+      svg {
+        fill: var(--gray-700);
+        font-size: $font-size-14;
+      }
+    }
+
+    &--text {
+      font-size: $font-size-12;
+      font-weight: $fw-bold;
+      color: var(--gray-700);
+
+      &-nationality {
+        font-size: $font-size-12;
+        font-weight: $fw-medium;
+        color: var(--gray-600);
+        padding-left: $space-12;
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          left: $space-4;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 1px;
+          height: 100%;
+          background-color: var(--gray-600);
+        }
+      }
+    }
+  }
+
+  // Resume button
+  &__button {
+    position: absolute;
+    bottom: $space-24;
+    right: $space-24;
+    display: inline-flex;
+
+    @media (max-width: $breakpoint-md) {
+      display: none;
     }
   }
 }

@@ -23,7 +23,6 @@ export default function manifest() {
         src: PWA_ICON_192,
         sizes: "192x192",
         type: "image/png",
-        // Allow the icon to be used both as a standard and maskable PWA icon.
         purpose: "any maskable",
       },
       {

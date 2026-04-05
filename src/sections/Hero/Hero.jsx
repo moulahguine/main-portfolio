@@ -1,82 +1,74 @@
-// components ui
 import { InlineMap, HeroMedia } from "./ui";
+import { ResumeBtn } from "@/components";
+import { RiVerifiedBadgeFill, RiMapPinUserLine } from "react-icons/ri";
 
-// Components
-import { ActionPillButton } from "@/components";
-
-// Icons
-import { VerifiedBadge } from "@/components";
-import { PiMapPinLight } from "react-icons/pi";
-
-// Styles
 import "./Hero.scss";
 
-// Resume URL
-const RESUME_URL = "/resume/resume.pdf";
-
-// Hero component
 export default function Hero() {
   return (
     // Hero section
-    <section className="hero" aria-labelledby="hero-heading">
+    <section
+      className="hero-section"
+      id="hero-section"
+      aria-label="hero banner "
+    >
       {/* Container */}
-      <div className="container">
-        {/* Map */}
-        <div className="hero__map" aria-label="Map showing Istanbul and Rabat">
+      <div className="hero-section__container">
+        {/* ==== Map ==== */}
+        <div
+          className="hero-section__map--wrapper"
+          aria-label="Map showing my location"
+        >
           <InlineMap />
         </div>
 
-        {/* Profile */}
-        <div className="hero__profile">
-          {/* Profile content */}
-          <div className="hero__profile-content">
-            {/* Hero media */}
-            <HeroMedia classImage="hero__image" classFigure="hero__media" />
+        {/* ==== Profile content ==== */}
+        <div className="hero-section__profile--content">
+          <HeroMedia
+            classImage="hero-section__media--image"
+            classFigure="hero-section__media--figure"
+          />
 
-            {/* Hero info */}
-            <div className="hero__info">
-              {/* Hero title */}
-              <h1 id="hero-title" className="hero__title">
-                Mohamed Oulahguine
-                <VerifiedBadge
-                  className="verified-badge"
-                  width={25}
-                  height={25}
+          {/* Hero fullname */}
+          <div className="hero-section__info">
+            <h1 id="hero-fullname" className="hero-section__fullname">
+              <b className="hero-section__fullname--text">Mohamed Oulahguine</b>
+              <span className="hero-section__fullname--verified">
+                <RiVerifiedBadgeFill
+                  className="hero-section__fullname--verified-icon"
+                  aria-hidden="true"
+                  role="img"
                 />
-              </h1>
-              {/* Hero role */}
-              <p className="hero__role">
-                Frontend Developer | React • Next.js • TypeScript
-              </p>
-              {/* Hero location */}
-              <address className="hero__location">
-                <PiMapPinLight aria-hidden="true" role="img" />
-                Istanbul, Turkey |{" "}
-                <span className="nationality" title="Moroccan">
-                  {" "}
-                  from Moroccan
+              </span>
+            </h1>
+
+            {/* Hero role */}
+            <p className="hero-section__role">
+              Frontend Developer | React • Next.js • TypeScript
+            </p>
+
+            {/* Hero location */}
+            <address className="hero-section__location">
+              <span className="hero-section__location--icon">
+                <RiMapPinUserLine aria-hidden="true" role="img" />
+              </span>
+              <p
+                className="hero-section__location--text"
+                title="Istanbul, Turkey"
+              >
+                Istanbul, Turkey
+                <span
+                  className="hero-section__location--text-nationality"
+                  title="Moroccan"
+                >
+                  From Morocco
                 </span>
-              </address>
-            </div>
-          </div>
-
-          {/* Resume button */}
-          <div className="resume-btn-container">
-            {/* Action pill button */}
-
-            <ActionPillButton
-              href={RESUME_URL}
-              download
-              aria-label="Download Resume (PDF)"
-              title="Download Resume"
-              label="Resume"
-              variant="resume"
-              doneLabel="Done!"
-              enableHover={true}
-              enableClickFeedback={true}
-            />
+              </p>
+            </address>
           </div>
         </div>
+        {/* ==== Resume button ==== */}
+        <ResumeBtn className="hero-section__button" />
       </div>
     </section>
   );

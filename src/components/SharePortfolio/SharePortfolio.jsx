@@ -4,11 +4,10 @@
 import { useState, useCallback, useRef } from "react";
 
 // Components
-import { ModalTrigger, ActionPillButton, LOCAL_MEDIA } from "@/components";
+import { ModalTrigger, ActionPillButton, IMAGEKIT_MEDIA } from "@/components";
 
 // Icons
 import { QRCodeSVG } from "qrcode.react";
-import { PiShareFatLight } from "react-icons/pi";
 import { toPng } from "html-to-image";
 
 // Styles
@@ -17,7 +16,7 @@ import "./SharePortfolio.scss";
 // Data
 const CANONICAL_URL = "https://mohamedoulahguine.com";
 
-const profileLogo = LOCAL_MEDIA.logo.logo;
+const profileLogo = IMAGEKIT_MEDIA.logo.logo;
 const qrImageSrc =
   typeof profileLogo === "string" ? profileLogo : profileLogo.src;
 
@@ -34,9 +33,9 @@ export default function SharePortfolio({ renderTrigger }) {
     if (!cardRef.current) return;
     try {
       const dataUrl = await toPng(cardRef.current, {
-        pixelRatio: 2,
+        pixelRatio: 5,
         cacheBust: true,
-        backgroundColor: "#f3f3f4",
+        backgroundColor: "#0000",
         skipFonts: true,
         filter: (node) => node.tagName?.toLowerCase() !== "image",
       });
@@ -57,26 +56,10 @@ export default function SharePortfolio({ renderTrigger }) {
   return (
     // Modal trigger
     <ModalTrigger
-      title="Scan QR Code."
+      title="Scan QR ."
       size="small"
       showHeader={true}
-      renderTrigger={
-        renderTrigger ??
-        (({ open }) => (
-          <button
-            className="share-portfolio-trigger-btn"
-            onClick={open}
-            aria-label="Share portfolio"
-            type="button"
-            title="Share portfolio"
-          >
-            {/* Icon */}
-            <span className="share-portfolio__icon" aria-hidden="true">
-              <PiShareFatLight size={18} aria-hidden="true" role="img" />
-            </span>
-          </button>
-        ))
-      }
+      renderTrigger={renderTrigger}
     >
       {/* Modal content */}
       <div className="share-portfolio-modal">
@@ -84,25 +67,24 @@ export default function SharePortfolio({ renderTrigger }) {
         <div ref={cardRef} className="qr">
           <QRCodeSVG
             value={CANONICAL_URL}
-            size={270}
+            size={250}
             level="H"
             marginSize={0}
             imageSettings={{
               src: qrImageSrc,
-              width: 40,
-              height: 40,
-              borderRadius: 50,
+              width: 30,
+              height: 30,
               excavate: true,
             }}
-            aria-label="QR code to portfolio"
+            aria-label="QR code linking to my portfolio"
           />
         </div>
         {/* Download button */}
         <ActionPillButton
           onClick={handleDownload}
-          aria-label={downloaded ? "Downloaded" : "Download card"}
-          title="Download Card "
-          label="Download Card"
+          aria-label={downloaded ? "Downloaded" : "Download QR code as PNG"}
+          title="Download"
+          label="Download"
           doneLabel="Done!"
           variant="share"
           className="download-btn"

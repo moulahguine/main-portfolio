@@ -12,6 +12,7 @@ import {
   Logo,
   IMAGEKIT_MEDIA,
   LOCAL_MEDIA,
+  ResumeBtn,
 } from "@/components";
 
 // styles
@@ -70,20 +71,34 @@ export default function Header() {
 
       {/* mobile navigation */}
       {isMobile && (
-        <motion.div
-          id="mobile-nav"
-          className="nav__mobile--wrapper"
-          variants={{
-            visible: { y: 0 },
-            hidden: { y: 100 },
-          }}
-          animate={hidden ? "hidden" : "visible"}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          aria-label="Mobile navigation"
-          aria-hidden={!isMobile}
-        >
-          <Navigation className="nav__mobile" />
-        </motion.div>
+        <>
+          <motion.div
+            className="mobile__button-wrapper"
+            variants={{
+              visible: { y: -65 },
+              hidden: { y: 0 },
+            }}
+            animate={hidden ? "hidden" : "visible"}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            aria-label="Mobile resume button"
+          >
+            <ResumeBtn className="mobile__button--resume" />
+          </motion.div>
+          <motion.div
+            id="mobile-nav"
+            className="nav__mobile--wrapper"
+            variants={{
+              visible: { y: 0 },
+              hidden: { y: 100 },
+            }}
+            animate={hidden ? "hidden" : "visible"}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            aria-label="Mobile navigation"
+            aria-hidden={!isMobile}
+          >
+            <Navigation className="nav__mobile" />
+          </motion.div>
+        </>
       )}
     </>
   );

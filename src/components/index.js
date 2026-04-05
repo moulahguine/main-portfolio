@@ -33,9 +33,7 @@ export { default as ActionPillButton } from "./ActionPillButton/ActionPillButton
 export { default as ImageViewer } from "./ModalContent/ImageViewer/ImageViewer";
 export { default as VideoViewer } from "./ModalContent/VideoViewer/VideoViewer";
 
-// Icons
-export { default as VerifiedBadge } from "./Icons/VerifiedBadge";
-
 // Shared UI
+export { default as ResumeBtn } from "./ResumeBtn/ResumeBtn";
 export { default as ImageWithFallback } from "./ImageWithFallback/ImageWithFallback";
 export { IMAGEKIT_MEDIA, LOCAL_MEDIA } from "./Media/constants";

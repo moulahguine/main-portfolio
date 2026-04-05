@@ -5,11 +5,12 @@
   width: 100%;
   position: sticky;
   top: 0;
-  background-color: color-mix(in srgb, var(--white) 50%, transparent);
-  backdrop-filter: blur(8px);
+  background-color: color-mix(in srgb, var(--white) 70%, transparent);
+  backdrop-filter: blur(15px);
   z-index: $z-header;
 
   @media (max-width: $breakpoint-md) {
+    position: fixed;
     padding: 0;
   }
 
@@ -61,6 +62,12 @@
       }
     }
     //navigation styles are in Navigation.scss
+
+    .nav__desktop {
+      @media (max-width: $breakpoint-md) {
+        display: none;
+      }
+    }
     // menu trigger styles are in Menu.scss
   }
 }
@@ -75,11 +82,31 @@
   bottom: 0;
   padding: $space-8;
   z-index: $z-dropdown;
+
   .nav__mobile {
     width: fit-content;
     background-color: var(--gray-100);
     border: solid 1px var(--gray-400);
     border-radius: $radius-xl;
     padding: $space-4;
+  }
+}
+
+// resume button styles
+
+.mobile__button-wrapper {
+  position: fixed;
+  bottom: $space-12;
+  right: $space-12;
+  z-index: $z-dropdown;
+
+  @media (min-width: $breakpoint-md) {
+    display: none;
+  }
+}
+
+.mobile__button--resume {
+  @media (min-width: $breakpoint-md) {
+    display: none;
   }
 }

@@ -5,7 +5,7 @@
   @include flex-center;
   width: fit-content;
   background-color: transparent;
-  border-radius: $radius-md;
+  border-radius: $radius-lg;
 }
 
 // Action pill button
@@ -23,8 +23,8 @@
   &__icon-shell {
     @include flex-center;
     position: relative;
-    width: clamp($space-24, 2vw, $space-32);
-    height: clamp($space-24, 2vw, $space-32);
+    width: $space-32;
+    height: $space-32;
     flex-shrink: 0;
     border-radius: inherit;
     background-color: var(--gray-100);

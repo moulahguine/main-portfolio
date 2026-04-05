@@ -1,0 +1,74 @@
+@use "../../assets/styles" as *;
+
+// Resume button
+.button {
+  @include flex-center;
+  width: fit-content;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  will-change: transform;
+  transition: all 0.3s ease-in-out;
+
+  &--link {
+    @include flex-center;
+    background-color: var(--gray-200);
+    padding: $space-8 $space-16 $space-8 $space-12;
+    border-radius: inherit;
+    transition: all 0.3s ease-in-out;
+
+    // Hover state for devices that support hover
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--gray-300);
+      }
+    }
+
+    @media (max-width: $breakpoint-md) {
+      background-color: var(--gray-700);
+      gap: $space-4;
+      padding: $space-12;
+    }
+  }
+
+  // Active state for click feedback
+  &:active {
+    border-radius: $radius-2xl;
+    transform: scale(0.9);
+  }
+
+  &--icon {
+    @include flex-center;
+    border-radius: $radius-xl;
+    width: $space-32;
+    height: $space-32;
+
+    svg {
+      stroke: var(--gray-800);
+      fill: var(--gray-800);
+      font-size: $font-size-20;
+    }
+
+    @media (max-width: $breakpoint-md) {
+      width: $space-20;
+      height: $space-20;
+
+      svg {
+        stroke: var(--gray-200);
+        fill: var(--gray-200);
+        font-size: $font-size-16;
+      }
+    }
+  }
+
+  &--label {
+    text-transform: capitalize;
+    font-size: $font-size-16;
+    font-weight: $fw-bold;
+    color: var(--gray-800);
+
+    @media (max-width: $breakpoint-md) {
+      color: var(--gray-100);
+      font-size: $font-size-14;
+    }
+  }
+}
