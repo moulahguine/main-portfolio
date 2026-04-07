@@ -1,31 +1,19 @@
 "use client";
 
-// hooks
 import { useState, useCallback, useRef } from "react";
-
-// Components
-import { ModalTrigger, ActionPillButton, IMAGEKIT_MEDIA } from "@/components";
-
-// Icons
+import { ModalTrigger, ResumeBtn, IMAGEKIT_MEDIA } from "@/components";
 import { QRCodeSVG } from "qrcode.react";
 import { toPng } from "html-to-image";
-
-// Styles
 import "./SharePortfolio.scss";
 
-// Data
 const CANONICAL_URL = "https://mohamedoulahguine.com";
-
 const profileLogo = IMAGEKIT_MEDIA.logo.logo;
 const qrImageSrc =
   typeof profileLogo === "string" ? profileLogo : profileLogo.src;
 
 // Share portfolio component
 export default function SharePortfolio({ renderTrigger }) {
-  // State
   const [downloaded, setDownloaded] = useState(false);
-
-  // Ref
   const cardRef = useRef(null);
 
   // Handle download
@@ -80,16 +68,13 @@ export default function SharePortfolio({ renderTrigger }) {
           />
         </div>
         {/* Download button */}
-        <ActionPillButton
+        <ResumeBtn
           onClick={handleDownload}
-          aria-label={downloaded ? "Downloaded" : "Download QR code as PNG"}
+          ariaLabel={downloaded ? "Downloaded" : "Download QR code as PNG"}
           title="Download"
-          label="Download"
-          doneLabel="Done!"
-          variant="share"
+          label={downloaded ? "Done!" : "Download"}
           className="download-btn"
-          enableHover={true}
-          enableClickFeedback={true}
+          whileTap={{ scale: 0.96 }}
         />
       </div>
     </ModalTrigger>

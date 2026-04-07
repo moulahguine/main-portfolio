@@ -3,7 +3,7 @@ const SITE_URL = "https://mohamedoulahguine.com";
 const metadata = {
   metadataBase: new URL("https://mohamedoulahguine.com"),
   title: {
-    default: "Mohamed Oulahguine",
+    default: "Mohamed Oulahguine • Frontend Developer",
     template: "%s | Mohamed Oulahguine",
   },
   description:

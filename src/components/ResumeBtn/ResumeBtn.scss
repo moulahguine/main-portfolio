@@ -3,30 +3,28 @@
 // Resume button
 .button {
   @include flex-center;
+  gap: $space-8;
   width: fit-content;
   border-radius: $radius-lg;
   overflow: hidden;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
   will-change: transform;
   transition: all 0.3s ease-in-out;
 
-  &--link {
-    @include flex-center;
-    background-color: var(--gray-800);
-    padding: $space-8 $space-16 $space-8 $space-12;
-    border-radius: inherit;
-    transition: all 0.3s ease-in-out;
+  background-color: var(--gray-800);
+  padding: $space-8 $space-16 $space-8 $space-12;
 
-    // Hover state for devices that support hover
-    @media (hover: hover) {
-      &:hover {
-        background-color: var(--gray-700);
-      }
+  // Hover state for devices that support hover
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--gray-700);
     }
+  }
 
-    @media (max-width: $breakpoint-md) {
-      gap: $space-8;
-      padding: $space-12;
-    }
+  @media (max-width: $breakpoint-md) {
+    padding: $space-12;
   }
 
   // Active state for click feedback
@@ -50,7 +48,7 @@
 
   &--label {
     text-transform: capitalize;
-    font-size: clamp($font-size-14, 3vw, $font-size-16);
+    font-size: clamp($font-size-16, 3vw, $font-size-16);
     font-weight: $fw-bold;
     color: var(--gray-100);
   }

@@ -1,11 +1,8 @@
 "use client";
 
-// hooks
 import { useMediaQuery } from "react-responsive";
 import { motion, useScroll, useMotionValueEvent } from "motion/react";
 import { useState } from "react";
-
-// components
 import {
   Navigation,
   Menu,
@@ -14,8 +11,6 @@ import {
   LOCAL_MEDIA,
   ResumeBtn,
 } from "@/components";
-
-// styles
 import "./Header.scss";
 
 export default function Header() {
